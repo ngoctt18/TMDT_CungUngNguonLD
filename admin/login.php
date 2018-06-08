@@ -50,7 +50,7 @@ function checkLogin($username, $password){
   <meta name="description" content="">
   <meta name="author" content="">
   <title>Login</title>
-  <!-- Bootstrap core CSS-->
+  <!-- Bootstrap core CSS - SublimeLinter-php - PHPIntel-->
   <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
   <link href="public/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

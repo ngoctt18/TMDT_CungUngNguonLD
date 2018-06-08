@@ -29,7 +29,7 @@
 								</a>
 							</li>
 						</ul>
-						<p class="copyright text-muted">Copyright &copy; Ngoc's Website 2018</p>
+						<p class="copyright text-muted">Copyright &copy; Nhóm 2 - Thương mại điện tử -  2018</p>
 					</div>
 				</div>
 			</div>
