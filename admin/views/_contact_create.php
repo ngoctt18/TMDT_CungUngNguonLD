@@ -3,20 +3,14 @@
 <div class="content-wrapper" style="background: #fff;">
     <div class="container-fluid">
     <div class="col-lg-12 col-md-12 mx-auto">
-        <p style="color: red;">Create User</p>
-        <form name="editUser" id="editUser" action="" method="post">
+        <p style="color: red;">Create Contact</p>
+
+        <form name="editContact" id="editContact" action="" method="post">
         <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-            <label for="namecompany">NameCompany</label>
-            <big>NameCompany</big>
-            <input type="text" class="form-control" id="namecompany" name="namecompany">
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-            <label for="representative">Representative</label>
-            <big>Representative</big>
-            <input type="text" class="form-control" id="representative" name="representative" />
+            <label for="name">Name</label>
+            <big>Name</big>
+            <input type="text" class="form-control" id="name" name="name">
             </div>
         </div>
         <div class="control-group">
@@ -28,20 +22,6 @@
         </div>
         <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-            <label for="username">Username</label>
-            <big>Username</big>
-            <input type="text" class="form-control" id="username" name="username" />
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
-            <label for="password">Paasword</label>
-            <big>Paasword</big>
-            <input type="text" class="form-control" id="password" name="password" />
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="form-group floating-label-form-group controls">
             <label for="phone">Phone</label>
             <big>Phone</big>
             <input type="text" class="form-control" id="phone" name="phone" />
@@ -49,19 +29,9 @@
         </div>
         <div class="control-group">
             <div class="form-group floating-label-form-group controls">
-            <label for="address">Address</label>
-            <big>Address</big>
-            <input type="text" class="form-control" id="address" name="address" />
-            </div>
-        </div>
-        <div class="control-group">
-            <big>Loại tài khoản</big>
-            <div class="form-check">
-                <select class="form-control" id="type_user" name="type_user">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>
+            <label for="message">Message</label>
+            <big>Message</big>
+            <input type="text" class="form-control" id="message" name="message" />
             </div>
         </div>
         <div class="control-group">
@@ -73,6 +43,22 @@
                 </select>
             </div>
         </div>
+        <!-- <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+            <label for="message">Status</label>
+            <big>Status</big>
+            <input type="text" class="form-control" id="status" name="status" />
+            </div>
+        </div> -->
+        <!-- <div class="control-group">
+            <big>Status</big>
+            <div class="form-check">
+                <select class="form-control" id="status" name="status">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+            </div>
+        </div> -->
 
         <br>
         <div id="success"></div>
