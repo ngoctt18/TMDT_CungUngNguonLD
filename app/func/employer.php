@@ -12,7 +12,6 @@ function checkUsername($username){
 		return true;
 	else 
 		return false;
-
 }
 
 
@@ -39,7 +38,7 @@ function employerRegister($username, $phone_num, $representative_name, $company_
 function checkLoginEmployer($usernameEmployer, $password){
   
   global $conn;
-  $sql = "SELECT * FROM users WHERE username = '{$usernameEmployer}' AND password = '{$password}' ";
+  $sql = "SELECT * FROM users WHERE username = '{$usernameEmployer}' AND password = '{$password}' AND type_user = 2";
   
   // echo $sql;die;
   

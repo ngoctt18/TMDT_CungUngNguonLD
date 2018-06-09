@@ -3,7 +3,7 @@
 <div class="content-wrapper" style="background: #fff;">
     <div class="container-fluid">
     <div class="col-lg-12 col-md-12 mx-auto">
-        <p>Edit User</p>
+        <p style="color: red">Edit <?php echo $user['username']; ?></p>
         <form name="editUser" id="editUser" action="" method="post">
         <div class="control-group">
             <div class="form-group floating-label-form-group controls">
@@ -48,22 +48,32 @@
             </div>
         </div>
         <div class="control-group">
+            <big>Loại tài khoản</big>
+            <div class="form-check">
+                <select class="form-control" id="type_user" name="type_user">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+        </div>
+        <!-- <div class="control-group">
             <div class="form-group floating-label-form-group controls">
             <label for="status">Status</label>
             <big>Status</big>
             <input type="text" class="form-control" id="status" name="status" value="<?php echo $user['status']; ?>" />
             </div>
-        </div>
+        </div> -->
 
-        <!-- <div class="control-group">
+        <div class="control-group">
             <big>Status</big>
             <div class="form-check">
                 <select class="form-control" id="status" name="status">
-                    <option value="0">0</option>
                     <option value="1">1</option>
+                    <option value="2">2</option>
                 </select>
             </div>
-        </div> -->
+        </div>
 
         <br>
         <div id="success"></div>

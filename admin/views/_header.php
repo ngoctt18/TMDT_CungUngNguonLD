@@ -45,7 +45,7 @@
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="tables.html">
+          <a class="nav-link" href="contact.php">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Contact</span>
           </a>

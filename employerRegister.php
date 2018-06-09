@@ -32,8 +32,6 @@ if (isset($_POST['register'])) {
                   $_SESSION['usernameEmployer'] = $usernameEmployer;
                   
                   header('location: employerPost.php');
-
-
                 } else {
                   // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
                   session_destroy();
@@ -110,19 +108,19 @@ if (isset($_POST['register'])) {
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-md-8">
 		<form role="form" action="" method="post">
-			<h2>Nhà tuyển dụng Đăng ký <small>It's free and always will be.</small></h2>
+			<h2>Nhà tuyển dụng Đăng ký</h2>
 			<hr class="colorgraph">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <label for="username">Tài khoản</label>
-                        <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Tài khoản" tabindex="1" required>
-                        <span class="employerWaring"><?= ($checkUser) ? ' Tài khoản đã tồn tại. Vui lòng thử lại' : ''; ?></span>
+            <label for="username">Tài khoản</label>
+            <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Tài khoản" tabindex="1" required>
+            <span class="employerWaring"><?= ($checkUser) ? ' Tài khoản đã tồn tại. Vui lòng thử lại' : ''; ?></span>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <label for="phone_num">Số điện thoại</label>
+            <label for="phone_num">Số điện thoại</label>
 						<input type="text" name="phone_num" id="phone_num" class="form-control input-lg" placeholder="Số điện thoại" tabindex="2" required>
 					</div>
 				</div>
@@ -131,32 +129,32 @@ if (isset($_POST['register'])) {
                 <label for="representative_name">Tên người đại diện</label>
 				<input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Tên người đại diện" tabindex="3" required>
 			</div>
-            <div class="form-group">
-                <label for="company_name">Tên công ty</label>
-                <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
-            </div>
+      <div class="form-group">
+          <label for="company_name">Tên công ty</label>
+          <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
+      </div>
 			<div class="form-group">
                 <label for="email">Email</label>
 				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
 			</div>
-            <div class="form-group">
-                <label for="address">Địa chỉ</label>
-                <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
-            </div>
+      <div class="form-group">
+        <label for="address">Địa chỉ</label>
+        <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
+      </div>
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-                        <label for="password">Mật khẩu</label>
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mật khẩu" tabindex="7" required>
-					</div>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="form-group">
+          <label for="password">Mật khẩu</label>
+					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mật khẩu" tabindex="7" required>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-                        <label for="password_confirm">Nhập lại mật khẩu</label>
-						<input type="password" name="password_confirm" id="password_confirm" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="8" required>
-                        <span class="employerWaring"><?= ($checkPassConfirm) ? ' Mật khẩu không khớp. Vui lòng thử lại' : ''; ?></span>
-					</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-6">
+				<div class="form-group">
+          <label for="password_confirm">Nhập lại mật khẩu</label>
+					<input type="password" name="password_confirm" id="password_confirm" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="8" required>
+          <span class="employerWaring"><?= ($checkPassConfirm) ? ' Mật khẩu không khớp. Vui lòng thử lại' : ''; ?></span>
 				</div>
+			</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-4 col-sm-3 col-md-3">
@@ -177,6 +175,7 @@ if (isset($_POST['register'])) {
         </div>
 			</div>
 		</form>
+
         <br>
 	</div>
   <div class="col-xs-12 col-sm-4 col-md-4">
