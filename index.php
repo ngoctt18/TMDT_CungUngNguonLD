@@ -39,7 +39,7 @@
 								</h3>
 							</a>
 							<p class="post-meta">Posted by
-								<a href="#"><?= $post['fullname'] ?></a>
+								<a href="#"><?= $post['representative'] ?></a>
 								on September 24, 2018
 							</p>
 						</div>

@@ -1,3 +1,61 @@
+<?php 
+// session_start();
+
+include_once('config.php');
+include_once('app/func/employer.php');
+
+include_once('views/_header.php'); // Có session_start(); rồi
+
+$checkPassConfirm = false;
+$checkUser = false;
+
+
+
+if (isset($_POST['register'])) {
+    if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['company_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
+        if ($_POST['password'] == $_POST['password_confirm']) {
+            // Khớp mật khẩu
+            $checkPassConfirm = false;
+            if (checkUsername($_POST['username'])) {
+                // Tài khoản đã tồn tại
+                $checkUser = true;
+
+            } else {
+                $checkUser = false;
+                //echo "Đăng nhập thành công!";
+                $usernameEmployer = trim($_POST['username']);
+                $passwordEmployer = md5(trim($_POST['password']));
+
+                if (employerRegister($usernameEmployer, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordEmployer )) {
+
+                  // Khởi tạo SESSION username và chuyển hướng người dùng vào trang employerPost
+                  $_SESSION['usernameEmployer'] = $usernameEmployer;
+                  
+                  header('location: employerPost.php');
+
+
+                } else {
+                  // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
+                  session_destroy();
+                  header('location: employerRegister.php');
+
+                }
+            }
+            
+        } else {
+            // echo "Mật khẩu nhập lại không khớp!";
+            $checkPassConfirm = true;
+
+        }
+    }
+}
+
+
+
+ ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +63,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>My first PHP project - NgocBlog</title>
+    <title>Nhà tuyển dụng Đăng ký </title>
     <!-- Bootstrap core CSS -->
     <!-- <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Custom fonts for this template -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
 /* Credit to bootsnipp.com for the css for the color graph */
 .colorgraph {
@@ -22,6 +81,9 @@
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+.employerWaring {
+    color: red;
+}
 </style>
 
 </head>
@@ -29,65 +91,110 @@
 
 <!-- Include the above in your HEAD tag -->
 
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('public/img/post-sample-image.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="site-heading">
+          <h1>Nhóm 2</h1>
+          <span class="subheading">A Blog Theme by Ngoc TT</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
 <div class="container">
 
 <div class="row">
-    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form">
-			<h2>Please Sign Up <small>It's free and always will be.</small></h2>
+  <div class="col-xs-12 col-sm-8 col-md-8">
+		<form role="form" action="" method="post">
+			<h2>Nhà tuyển dụng Đăng ký <small>It's free and always will be.</small></h2>
 			<hr class="colorgraph">
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <label for="username">Tài khoản</label>
+                        <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Tài khoản" tabindex="1" required>
+                        <span class="employerWaring"><?= ($checkUser) ? ' Tài khoản đã tồn tại. Vui lòng thử lại' : ''; ?></span>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                        <label for="phone_num">Số điện thoại</label>
+						<input type="text" name="phone_num" id="phone_num" class="form-control input-lg" placeholder="Số điện thoại" tabindex="2" required>
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
-				<input type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
+                <label for="representative_name">Tên người đại diện</label>
+				<input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Tên người đại diện" tabindex="3" required>
 			</div>
+            <div class="form-group">
+                <label for="company_name">Tên công ty</label>
+                <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
+            </div>
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                <label for="email">Email</label>
+				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
 			</div>
+            <div class="form-group">
+                <label for="address">Địa chỉ</label>
+                <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
+            </div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                        <label for="password">Mật khẩu</label>
+						<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mật khẩu" tabindex="7" required>
 					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                        <label for="password_confirm">Nhập lại mật khẩu</label>
+						<input type="password" name="password_confirm" id="password_confirm" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="8" required>
+                        <span class="employerWaring"><?= ($checkPassConfirm) ? ' Mật khẩu không khớp. Vui lòng thử lại' : ''; ?></span>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-4 col-sm-3 col-md-3">
 					<span class="button-checkbox">
-						<button type="button" class="btn" data-color="info" tabindex="7">I Agree</button>
-                        <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1">
+						<!-- <button type="button" class="btn" data-color="info" tabindex="9">  Xác nhận</button> -->
+            <!-- <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" required> -->
 					</span>
 				</div>
 				<div class="col-xs-8 col-sm-9 col-md-9">
-					 By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a> set out by this site, including our Cookie Use.
+					 Khi click <strong class="label label-primary">Đăng ký</strong>, nghĩa là bạn đã đồng ý với <a href="#" data-toggle="modal" data-target="#t_and_c_m">Chính sách và điều khoản</a> của chúng tôi, bao gồm cả chính sách về cookie.
 				</div>
 			</div>
 			
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-				<div class="col-xs-12 col-md-6"><a href="#" class="btn btn-success btn-block btn-lg">Sign In</a></div>
+				<div class="col-xs-12 col-md-6">
+          <button type="submit" class="btn btn-primary btn-block btn-lg" name="register">Đăng ký</button>
+        </div>
 			</div>
 		</form>
+        <br>
 	</div>
+  <div class="col-xs-12 col-sm-4 col-md-4">
+    <div class="row">
+      <div class="col-xs-12 col-md-12">
+        <h2>Bạn đã có tài khoản?</h2>
+      </div>
+      <div class="col-xs-12 col-md-12">
+        <a href="employerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+
 <!-- Modal -->
-<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -107,13 +214,20 @@
 				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
 			</div>
 		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+  	</div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+  <?php 
+  include_once('views/_footer.php');
+ ?>
 </div>
+
+
 
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="public/vendor/jquery/jquery.min.js"></script>
 <!-- <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script> -->
+
+
 <script>
     $(function () {
     $('.button-checkbox').each(function () {

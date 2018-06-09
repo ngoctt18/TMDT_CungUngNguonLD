@@ -6,7 +6,7 @@ function get_all_posts() {
 	global $conn;
 	$posts = array();
 
-	$sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.fullname FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND posts.status = 1";
+	$sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.representative FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND posts.status = 1";
 
 	$result = mysqli_query($conn, $sql);
 

@@ -1,3 +1,14 @@
+<?php 
+
+session_start();
+
+if (isset($_SESSION['usernameEmployer'])) {
+	$usernameEmployer = $_SESSION['usernameEmployer'];
+}
+
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -27,10 +38,10 @@
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav ml-auto">
 						<!-- <li class="nav-item">
-							<a class="nav-link" href="index.php">Home</a>
+							<a class="nav-link" href="index.php">Trang chủ</a>
 						</li> -->
 						<li class="nav-item">
-							<a class="nav-link" href="#">Nhà tuyển dụng</a>
+							<a class="nav-link" href="<?= isset($usernameEmployer) ? 'employerPost.php' : 'employerRegister.php' ?>">Nhà tuyển dụng</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#">Người tìm việc</a>
@@ -41,7 +52,30 @@
 						<li class="nav-item">
 							<a class="nav-link" href="contact.php">Liên hệ</a>
 						</li>
+						<li class="nav-item">
+							<a class="nav-link" <?= isset($usernameEmployer) ? 'data-toggle="modal" data-target="#exampleModal"' : '' ?> href="javascript:void(0)" style="color: #000;font-family: tahoma;"> <?= isset($usernameEmployer) ? 'Logout, '.$_SESSION['usernameEmployer'] : '' ?>					
+							</a>
+						</li>
 					</ul>
 				</div>
 			</div>
 		</nav>
+
+		<!-- Logout Modal-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Bạn muốn đăng xuất?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên làm việc hiện tại của mình dưới tên tài khoản '<?php echo $_SESSION['usernameEmployer']; ?>'.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+            <a class="btn btn-primary" href="employerLogout.php">Đăng xuất</a>
+          </div>
+        </div>
+      </div>
+    </div>

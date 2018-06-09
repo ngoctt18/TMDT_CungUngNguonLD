@@ -40,7 +40,7 @@ function postsEdit($id, $title, $subtitle, $body, $status){
     $status = mysqli_real_escape_string($conn, $status);
 
     $sql = "Update posts Set title = '{$title}', sub_title = '{$subtitle}', body = '{$body}', status = '{$status}' Where id = '{$id}'";
-    echo $sql; die;
+    //echo $sql; die;
     if(mysqli_query($conn, $sql)){
         return true;
     } else {
@@ -57,6 +57,7 @@ function postsDelete($id){
     if(mysqli_query($conn, $sql)){
         return true;
     } else {
+        return false;
         echo mysqli_error($conn);
     }
 }
