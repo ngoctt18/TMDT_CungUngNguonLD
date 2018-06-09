@@ -1,65 +1,3 @@
-<?php 
-// session_start();
-
-include_once('config.php');
-include_once('app/func/employer.php');
-
-include_once('views/_header.php'); // Có session_start(); rồi
-
-$checkPassConfirm = false;
-$checkUser = false;
-
-
-if (isset($_SESSION['usernameEmployer'])) {
-  header('location: employerPost.php');
-} else {
-
-  if (isset($_POST['register'])) {
-      if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['company_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
-          if ($_POST['password'] == $_POST['password_confirm']) {
-              // Khớp mật khẩu
-              $checkPassConfirm = false;
-              if (checkUsername($_POST['username'])) {
-                  // Tài khoản đã tồn tại
-                  $checkUser = true;
-
-              } else {
-                  $checkUser = false;
-                  //echo "Đăng nhập thành công!";
-                  $usernameEmployer = trim($_POST['username']);
-                  $passwordEmployer = md5(trim($_POST['password']));
-
-                  if (employerRegister($usernameEmployer, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordEmployer )) {
-
-                    // Khởi tạo SESSION username và chuyển hướng người dùng vào trang employerPost
-                    $_SESSION['usernameEmployer'] = $usernameEmployer;
-                    
-                    header('location: employerPost.php');
-
-
-                  } else {
-                    // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
-                    session_destroy();
-                    header('location: employerRegister.php');
-
-                  }
-              }
-              
-          } else {
-              // echo "Mật khẩu nhập lại không khớp!";
-              $checkPassConfirm = true;
-
-          }
-      }
-  }
-}
-
-
-
-
- ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -131,8 +69,8 @@ if (isset($_SESSION['usernameEmployer'])) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="representative_name">Họ tên người đại diện</label>
-                        <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Họ tên người đại diện" tabindex="3" required>
+                        <label for="representative_name">Tên người đại diện</label>
+                        <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Tên người đại diện" tabindex="3" required>
                     </div>
                     <div class="form-group">
                         <label for="company_name">Tên công ty</label>
@@ -198,7 +136,7 @@ if (isset($_SESSION['usernameEmployer'])) {
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel"></h4>
+                        <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
                     </div>
                     <div class="modal-body">
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
@@ -210,7 +148,7 @@ if (isset($_SESSION['usernameEmployer'])) {
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Tôi đồng ý</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
                     </div>
                 </div>
                 <!-- /.modal-content -->

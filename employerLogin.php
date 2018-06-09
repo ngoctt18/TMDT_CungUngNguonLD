@@ -5,24 +5,33 @@ session_start();
 include_once('config.php');
 include_once('app/func/employer.php');
 
-if (isset($_POST['submit']) && !empty($_POST['usernameEmployer']) && !empty($_POST['password'])){
+if (isset($_SESSION['usernameEmployer'])) {
+  header('location: index.php');
+} else {
 
-  $usernameEmployer = trim($_POST['usernameEmployer']);
-  $password = md5(trim($_POST['password']));
+  if (isset($_POST['submit']) && !empty($_POST['usernameEmployer']) && !empty($_POST['password'])){
 
-  if (checkLoginEmployer($usernameEmployer, $password)){
-    // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
-    $_SESSION['usernameEmployer'] = $usernameEmployer;
-    header('location: employerPost.php');
-    
-  } else {
-    // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang login
-    session_destroy();
-    header('location: employerLogin.php');
+    $usernameEmployer = trim($_POST['usernameEmployer']);
+    $password = md5(trim($_POST['password']));
+
+    if (checkLoginEmployer($usernameEmployer, $password)){
+      // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
+      $_SESSION['usernameEmployer'] = $usernameEmployer;
+
+      $_SESSION['employerAcc'] = getInforEmployerLogin($_SESSION['usernameEmployer']);
+      
+      // var_dump($_SESSION['employerAcc']);die;
+
+      header('location: employerPost.php');
+      
+    } else {
+      // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang login
+      session_destroy();
+      header('location: employerLogin.php');
+    }
   }
-
-
 }
+
 
 ?>
 
