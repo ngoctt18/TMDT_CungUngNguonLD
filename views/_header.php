@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<title>Cung ứng ngồn lao động</title>
+		<title>Cung ứng nguồn lao động</title>
 		<!-- Bootstrap core CSS -->
 		<link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Custom fonts for this template -->

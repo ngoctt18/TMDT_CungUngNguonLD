@@ -42,7 +42,7 @@
 
   } else {
     // Show posts index
-    $posts = getAllPosts();
+    $p = getAllPosts();
     //var_dump($posts);die;
     include_once('views/_posts_index.php');
   }

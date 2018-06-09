@@ -4,6 +4,8 @@ function getAllPosts(){
     $posts = array();
 
     $sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.fullname, posts.status FROM posts INNER JOIN users WHERE posts.auth_id = users.id ";
+
+    /*$sql = "SELECT * FROM posts";*/
     
     $result = mysqli_query($conn, $sql);
 

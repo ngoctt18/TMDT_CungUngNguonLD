@@ -1,5 +1,8 @@
 <?php
-
+/*
+echo md5("123456");
+die();
+*/
 session_start();
 
 include_once('../config.php');
@@ -15,8 +18,11 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
     header('location: index.php');
   } else {
     // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang login
+
     session_destroy();
     header('location: login.php');
+
+    
   }
 
 
@@ -25,7 +31,7 @@ if (isset($_POST['submit']) && !empty($_POST['username']) && !empty($_POST['pass
 function checkLogin($username, $password){
   
   global $conn;
-  $sql = "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' ";
+  $sql = "SELECT * FROM users WHERE username = '{$username}' AND password = '{$password}' AND type_user = 1";
   // echo $sql;
   // die;
   

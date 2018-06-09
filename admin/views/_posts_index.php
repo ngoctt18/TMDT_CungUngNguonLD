@@ -7,6 +7,7 @@
         </li>
         <li class="breadcrumb-item active">Edit Posts</li>
       </ol>
+
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
@@ -16,14 +17,15 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>#</th>
+                  <th>STT</th>
+                  <th>ID</th>
                   <th>Title</th>
-                  <th>Author</th>
-                  <th>Status</th>
+                  <th>Sub_title</th>
+                  <th>Sub_title</th>
                   <th>Action</th>
                 </tr>
               </thead>
-              <tfoot>
+             <tfoot>
                 <tr>
                   <th>#</th>
                   <th>Title</th>
@@ -35,7 +37,7 @@
               <tbody>
               <?php
               $i=1;
-              foreach($posts as $post){
+              foreach($p as $post){
                 $status = "";
                 if($post['status']==0)
                   $status = "Draft";
@@ -43,6 +45,7 @@
                   $status = "Active";
                 elseif ($post['status']==2) 
                   $status = "Delete";
+                ?>
                 echo '<tr>';
                 echo    '<td>'.$i.'</td>';
                 echo    '<td>'.$post['title'].'</td>';
@@ -54,9 +57,30 @@
                         </td>';
                 echo '</tr>';
                 $i++;
+              
+              <?php
               }
               ?>                
               </tbody>
+
+               <!-- <?php foreach($p as $key => $post){ ?>
+               <tbody>
+                 <tr>
+                    <td><?php echo $key+1; ?></td>
+                    <td><?php echo $post['id']; ?></td>
+                   <td><?php echo $post['title']; ?></td>
+                   <td><?php echo $post['sub_title']; ?></td>
+                   <td><?php echo $post['status']; ?></td>
+                   <td>
+                      <a href="#">Sửa</a> | 
+                      <a href="#">Xóa</a>
+                   </td>
+                 </tr>
+               </tbody>
+               
+               <?php
+               }
+               ?> -->
             </table>
           </div>
         </div>

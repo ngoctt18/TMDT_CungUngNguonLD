@@ -1,7 +1,7 @@
 <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Ngoc's Blog 2018</small>
+          <small>Copyright &copy; Nhóm 2 - Thương mại điện tử -  2018</small>
         </div>
       </div>
     </footer>
