@@ -1,11 +1,17 @@
-<?php 
-session_start();
+<?php
+if (isset($_SESSION['usernameJK'])) {
+	if (isset($_SESSION['usernameEmployer'])) {
+	    unset($_SESSION["usernameEmployer"]);
+	  }
+ 	$usernameJK = $_SESSION['usernameJK'];
+}
+
 
 if (isset($_SESSION['usernameEmployer'])) {
+	if (isset($_SESSION['usernameJK'])) {
+	    unset($_SESSION["usernameJK"]);
+	  }
 	$usernameEmployer = $_SESSION['usernameEmployer'];
-}
-if (isset($_SESSION['usernameJK'])) {
- 	$usernameJK = $_SESSION['usernameJK'];
 }
 
  ?>
@@ -60,7 +66,7 @@ if (isset($_SESSION['usernameJK'])) {
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#jobseekerLogout"' : '' ?> href="javascript:void(0)" style="font-family: tahoma;"> <?= isset($usernameJK) ? 'Out, '.$usernameJK : '' ?>					
+							<a class="nav-link" <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#employerLogout"' : '' ?> href="javascript:void(0)" style="font-family: tahoma;"> <?= isset($usernameJK) ? 'Out, '.$usernameJK : '' ?>					
 							</a>
 						</li>
 					</ul>
@@ -88,7 +94,7 @@ if (isset($_SESSION['usernameJK'])) {
     </div>
 
     	<!-- Logout Modal-->
-    <div class="modal fade" id="jobseekerLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--     <div class="modal fade" id="jobseekerLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -104,7 +110,7 @@ if (isset($_SESSION['usernameJK'])) {
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- Logout Modal-->
     <div class="modal fade" id="jobseekerRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

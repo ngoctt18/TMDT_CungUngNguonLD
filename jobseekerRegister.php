@@ -1,5 +1,5 @@
 <?php 
-include_once('views/_header.php'); // Có session_start(); rồi
+session_start();
 include_once('config.php');
 include_once('app/func/jobseeker.php');
 
@@ -8,12 +8,18 @@ $checkPassConfirm = false;
 $checkUser = false;
 
 
-// if (isset($_SESSION['usernameJK'])) {
-//   header('location: jobseekerSuccess.php');
-//   // exit();
-// }
+if (isset($_SESSION['usernameJK'])) {
+  if (isset($_SESSION['usernameEmployer'])) {
+    unset($_SESSION["usernameEmployer"]);
+  }
+  header('location: index.php');
+  exit();
+}
 
 if (isset($_SESSION['usernameEmployer'])) {
+  if (isset($_SESSION['usernameJK'])) {
+    unset($_SESSION["usernameJK"]);
+  }
   header('location: index.php');
   exit();
 } 
@@ -37,18 +43,14 @@ if (isset($_POST['register'])) {
                 if (jobseekerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordJK )) {
 
                   // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
-                  session_destroy();
-                  session_start();
+                  
 
                   $_SESSION['usernameJK'] = $usernameJK;
 
-                  header('location: jobseekerSuccess.php');
-                  exit();
+                  echo "<center><h2>Bạn đã đăng ký thành công!</h2></center>";
+                  echo "<center><h3>Click <a href=\"index.php\">Trang chủ</a></h3> để về trang chính</center>";
+                  die;
 
-                  if (isset($_SESSION['usernameJK'])) {
-                    header('location: index.php');
-                    exit();
-                  }
                     
 
                 } else {
@@ -72,7 +74,7 @@ if (isset($_POST['register'])) {
 
 
 
-
+include_once('views/_header.php'); // Có session_start(); rồi
 
  ?>
 
