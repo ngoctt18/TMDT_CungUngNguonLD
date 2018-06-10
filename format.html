@@ -1,0 +1,77 @@
+HTML Cơ Bản CSS Cơ Bản JavaScript Cơ Bản PHP Cơ Bản SQL Cơ Bản Ruby Cơ Bản Node.js Cơ Bản Golang Cơ Bản Xem Thêm 
+ CodeHub.vn
+ Bài Viết
+ Câu Hỏi
+ Hướng Dẫn
+Đăng Nhập
+
+Tìm kiếm ...
+Trang Chủ   Bài Viết   [Fixed] Warning: Cannot modify header information - headers already sent by
+[Fixed] Warning: Cannot modify header information - headers already sent by
+ Trung Quân Trung Quân  21 November 2017
+Đây là một trong những lỗi rất phổ biến mà các lập trình viên PHP gặp phải trong khi code ứng dụng. Nôi dụng chi tiết của thông báo lỗi trên tương tự như sau:
+
+Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/my_app/public_html/index.php:250)
+Nguyên Nhân Của Lỗi
+Ngyên nhân gây ra lỗi trên đó là do trong code chúng ta đã thực hiện việc gửi output trước đó rồi nhưng sau đó lại chỉnh sửa thông tin header. Thao tác gửi output có thể thông qua việc sử dụng các hàm hoặc câu lệnh như echo, print, var_dump(), print_r()... Thao tác chỉnh sửa thông tin header có thể được thực hiện thông qua việc sử dụng các hàm như header(), session_start(), setcookie(), header_remove()...
+
+Khắc Phục Lỗi - Warning: Cannot modify header information - headers already sent by
+
+Ví dụ đoạn code như sau sẽ khiến sinh ra lỗi trên:
+
+File admin.php:
+
+<?php
+echo "Vui lòng login để tiếp tục!";
+header('Location: /login.php');
+?>
+Hoặc tương tự đoạn code sau cũng sinh ra lỗi:
+
+<html>
+<?php
+header('Location: /login.php');
+?>
+</html>
+Đặc biệt nếu bạn sử dụng session_start() thì chỉ những ký tự như khoảng trống hay dòng trống trước hoặc ngay sau thẻ mở <?php cũng đều gây ra lỗi:
+
+  <?php
+session_start();
+Với đoạn code chúng ta cần lưu ý xoá khoảng trống trước thẻ mở <?php để không gây ra lỗi.
+Cách Khắc Phục Lỗi
+Cách khắc phục lỗi trên đó là kiểm tra lại các hàm tạo ra output được sử dụng trước câu lệnh chỉnh sửa header và xoá bỏ bỏ chúng đi. Ngoài ra, bạn cũng có thể sửa đổi luồng chạy của các câu lệnh này trong ứng dụng sao cho các câu lệnh tạo ra output và câu lệnh chỉnh sửa header không diễn ra trong cùng một luồng chạy.
+
+Nếu như bạn sử dụng hàm session_start() thì cần đảm bảo hàm này được gọi ở ngay dòng đầu tiên của file PHP và không có bất kỳ ký tự nào dù là khoảng trống hay dòng trống vô tình được thêm vào phía trước đó.
+
+Nếu bạn sử dụng hàm header() thì nên gọi exit(), die() ngay sau đó.
+
+Trường hợp không tìm thấy hàm nào output ra kết quả được sử dụng trước đó thì bạn cần kiểm tra lại các file được nhập vào thông qua các hàm include() hoặc require() và kiểm tra lại xem các hàm này có output ra ký tự nào dù là khoảng trống hay hay dòng trống hay không.
+
+Kết Luận
+Mặc dù lỗi trên rất dễ gặp phải do chỉ cần bạn sơ ý output bất cứ một ký tự gì đó dù chỉ là một ký tự khoảng trống hay một dòng trống thì việc bạn chỉnh sửa thông tin header sau đó đều sẽ khiến sinh ra lỗi tuy nhiên như bạn thấy cũng không mất quá nhiều công sức để có thể khắc phục được nó. Việc gặp phải lỗi trong khi lập trình là khó có thể tránh khỏi ngay cả đối với những lập trình viên đã có nhiều năm kinh nghiệm, điều quan trong là trong quá trình code ứng dụng bạn lưu ý kiểm tra lại kỹ luồng chạy của ứng dụng khi sử dụng các hàm chỉnh sửa thông tin header.
+
+  
+ php  lập trình web  http
+Thêm Bình Luận:
+
+Đăng nhập để trả lời...
+ 
+Bài Viết Liên Quan
+Sử dụng PDO để kết nối với MySQL
+ Nguyễn Duy Tuấn Nguyễn Duy Tuấn  19 August 2015
+PHP 7 Có Gì Mới
+ Tran Khanh Tran Khanh  17 September 2015
+MySQLi hay PDO
+ Nguyễn Duy Tuấn Nguyễn Duy Tuấn  23 September 2015
+Xác Thực Người Dùng Trong Laravel
+ Minh Phạm Minh Phạm  07 October 2015
+Tìm Hiểu Về Laravel Generator
+ Hoàng Tùng Hoàng Tùng  09 October 2015
+ Banner Itviec
+Câu Hỏi Liên Quan
+Tìm tên Class của Object trong PHP
+Lỗi timeout khi cài đặt
+Không cài được Laravel bằng composer
+$$ là toán tử gì trong PHP?
+Trang trống sau khi gọi hàm mysql_connect
+Giới Thiệu Blog Liên Hệ Người Dùng Danh Sách Thẻ Phản Hồi Tuyển Dụng
+Thiết kế và phát triển bởi CodeHub.vn - Học Lập Trình Online Miễn Phí Team © 2017

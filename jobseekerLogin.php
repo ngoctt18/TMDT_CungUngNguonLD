@@ -1,35 +1,34 @@
 <?php
-
 session_start();
 
 include_once('config.php');
-include_once('app/func/employer.php');
+include_once('app/func/jobseeker.php');
 
-if (isset($_SESSION['usernameEmployer'])) {
+if (isset($_SESSION['usernameJK'])) {
   header('location: index.php');
   exit();
 } else {
 
-  if (isset($_POST['submit']) && !empty($_POST['usernameEmployer']) && !empty($_POST['password'])){
+  if (isset($_POST['submit']) && !empty($_POST['usernameJK']) && !empty($_POST['password'])){
 
-    $usernameEmployer = trim($_POST['usernameEmployer']);
+    $usernameJK = trim($_POST['usernameJK']);
     $password = md5(trim($_POST['password']));
 
-    if (checkLoginEmployer($usernameEmployer, $password)){
+    if (checkLoginJobseeker($usernameJK, $password)){
       // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
-      $_SESSION['usernameEmployer'] = $usernameEmployer;
+      $_SESSION['usernameJK'] = $usernameJK;
 
-      $_SESSION['employerAcc'] = getInforEmployerLogin($_SESSION['usernameEmployer']);
+      $_SESSION['jobseekerAcc'] = getInforJobseekerLogin($_SESSION['usernameJK']);
       
       // var_dump($_SESSION['employerAcc']);die;
 
-      header('location: employerPost.php');
+      header('location: index.php');
       exit();
       
     } else {
       // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang login
       session_destroy();
-      header('location: employerLogin.php');
+      header('location: jobseekerLogin.php');
       exit();
     }
   }
@@ -63,12 +62,12 @@ if (isset($_SESSION['usernameEmployer'])) {
 <body class="bg-dark">
   <div class="container">
     <div class="card card-login mx-auto mt-5">
-      <div class="card-header">Nhà tuyển dụng đăng nhập</div>
+      <div class="card-header">Người tìm việc đăng nhập</div>
       <div class="card-body">
         <form action="" method="post">
           <div class="form-group">
             <label for="email">Tài khoản</label>
-            <input class="form-control" id="email" type="text" name="usernameEmployer" placeholder="Tài khoản">
+            <input class="form-control" id="email" type="text" name="usernameJK" placeholder="Tài khoản">
           </div>
           <div class="form-group">
             <label for="password">Mật khẩu</label>
@@ -83,7 +82,7 @@ if (isset($_SESSION['usernameEmployer'])) {
           <button type="submit" class="btn btn-primary btn-block" name="submit" href="javascript:void(0)">Đăng nhập</button>
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="employerRegister.php">Đăng ký tài khoản</a>
+          <a class="d-block small mt-3" href="jobseekerRegister.php">Đăng ký tài khoản</a>
           <!-- <a class="d-block small" href="forgot-password.php">Quên mật khẩu</a> -->
           <a class="d-block small" href="index.php">Về Trang chủ</a>
         </div>

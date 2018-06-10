@@ -39,8 +39,8 @@
 								</h3>
 							</a>
 							<p class="post-meta">Posted by
-								<a href="#"><?= $post['representative'] ?></a>
-								on September 24, 2018
+								<a href="#"><?= $post['namecompany'] ?></a>
+								on <?= $post['created_at'] ?>
 							</p>
 						</div>
 						<hr>

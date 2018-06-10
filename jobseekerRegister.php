@@ -1,62 +1,75 @@
 <?php 
-// session_start();
-
-include_once('config.php');
-include_once('app/func/employer.php');
-
 include_once('views/_header.php'); // Có session_start(); rồi
+include_once('config.php');
+include_once('app/func/jobseeker.php');
+
 
 $checkPassConfirm = false;
 $checkUser = false;
 
 
+// if (isset($_SESSION['usernameJK'])) {
+//   header('location: jobseekerSuccess.php');
+//   // exit();
+// }
+
 if (isset($_SESSION['usernameEmployer'])) {
-  header('location: employerPost.php');
+  header('location: index.php');
   exit();
-} else {
+} 
+ 
 
-  if (isset($_POST['register'])) {
-      if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['company_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
-          if ($_POST['password'] == $_POST['password_confirm']) {
-              // Khớp mật khẩu
-              $checkPassConfirm = false;
-              if (checkUsername($_POST['username'])) {
-                  // Tài khoản đã tồn tại
-                  $checkUser = true;
+if (isset($_POST['register'])) {
+    if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
+        if ($_POST['password'] == $_POST['password_confirm']) {
+            // Khớp mật khẩu
+            $checkPassConfirm = false;
+            if (checkUsername($_POST['username'])) {
+                // Tài khoản đã tồn tại
+                $checkUser = true;
 
-              } else {
-                  $checkUser = false;
-                  //echo "Đăng nhập thành công!";
-                  $usernameEmployer = trim($_POST['username']);
-                  $passwordEmployer = md5(trim($_POST['password']));
+            } else {
+                $checkUser = false;
+                //echo "Đăng nhập thành công!";
+                $usernameJK = trim($_POST['username']);
+                $passwordJK = md5(trim($_POST['password']));
 
-                  if (employerRegister($usernameEmployer, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordEmployer )) {
+                if (jobseekerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordJK )) {
 
-                    // Khởi tạo SESSION username và chuyển hướng người dùng vào trang employerPost
-                    $_SESSION['usernameEmployer'] = $usernameEmployer;
-                    
-                    header('location: employerPost.php');
-                      exit();
+                  // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
+                  session_destroy();
+                  session_start();
 
+                  $_SESSION['usernameJK'] = $usernameJK;
 
-                  } else {
-                    // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
-                    session_destroy();
-                    header('location: employerRegister.php');
-                      exit();
+                  header('location: jobseekerSuccess.php');
+                  exit();
 
+                  if (isset($_SESSION['usernameJK'])) {
+                    header('location: index.php');
+                    exit();
                   }
-              }
-              
-          } else {
-              // echo "Mật khẩu nhập lại không khớp!";
-              $checkPassConfirm = true;
+                    
 
-          }
-      }
-  }
+                } else {
+                  // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
+                  session_destroy();
+                  header('location: jobseekerRegister.php');
+                  exit();
 
+                }
+            }
+            
+        } else {
+            // echo "Mật khẩu nhập lại không khớp!";
+            $checkPassConfirm = true;
+
+        }
+    }
 }
+
+
+
 
 
 
@@ -72,7 +85,7 @@ if (isset($_SESSION['usernameEmployer'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Nhà tuyển dụng Đăng ký </title>
+    <title>Người tìm việc Đăng ký </title>
     <!-- Bootstrap core CSS -->
     <!-- <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- Custom fonts for this template -->
@@ -112,13 +125,12 @@ if (isset($_SESSION['usernameEmployer'])) {
                 </div>
             </div>
         </div>
-
     </header>
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-8">
                 <form role="form" action="" method="post">
-                    <h2>Nhà tuyển dụng Đăng ký</h2>
+                    <h2>Người tìm việc Đăng ký</h2>
                     <hr class="colorgraph">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -136,12 +148,12 @@ if (isset($_SESSION['usernameEmployer'])) {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="representative_name">Họ tên người đại diện</label>
-                        <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Họ tên người đại diện" tabindex="3" required>
+                        <label for="representative_name">Họ tên</label>
+                        <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Họ tên" tabindex="3" required>
                     </div>
                     <div class="form-group">
                         <label for="company_name">Tên công ty</label>
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
+                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -166,17 +178,7 @@ if (isset($_SESSION['usernameEmployer'])) {
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-xs-4 col-sm-3 col-md-3">
-                            <span class="button-checkbox">
-            <!-- <button type="button" class="btn" data-color="info" tabindex="9">  Xác nhận</button> -->
-            <!-- <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" required> -->
-          </span>
-                        </div>
-                        <div class="col-xs-8 col-sm-9 col-md-9">
-                            Khi click <strong class="label label-primary">Đăng ký</strong>, nghĩa là bạn đã đồng ý với <a href="#" data-toggle="modal" data-target="#t_and_c_m">Chính sách và điều khoản</a> của chúng tôi, bao gồm cả chính sách về cookie.
-                        </div>
-                    </div>
+                    
                     <hr class="colorgraph">
                     <div class="row">
                         <div class="col-xs-12 col-md-6">
@@ -192,7 +194,7 @@ if (isset($_SESSION['usernameEmployer'])) {
                         <h2>Bạn đã có tài khoản?</h2>
                     </div>
                     <div class="col-xs-12 col-md-12">
-                        <a href="employerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
+                        <a href="jobseekerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -224,7 +226,6 @@ if (isset($_SESSION['usernameEmployer'])) {
         </div>
         <!-- /.modal -->
         <?php 
-
   include_once('views/_footer.php');
  ?>
     </div>
