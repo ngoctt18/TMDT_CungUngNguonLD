@@ -10,8 +10,8 @@ include_once('views/_header.php');
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="page-heading">
-              <h1>About Me</h1>
-              <span class="subheading">This is what I do.</span>
+              <h2>Về chúng tôi</h2>
+              <span class="subheading">Nhóm 2 - môn Thương mại điện tử</span>
             </div>
           </div>
         </div>

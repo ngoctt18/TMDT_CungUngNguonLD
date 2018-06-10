@@ -3,11 +3,8 @@
 	include_once('app/init.php');
 	include_once('views/_header.php');
 
-	$posts = get4Posts();
-	//var_dump($posts);
-	$news = get3News();
- //    echo "<pre>";
-	// print_r($news);
+	$posts = get_all_posts();
+	// print_r($posts);
 ?>
 
 <style type="text/css">
@@ -23,8 +20,8 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h2>Website hỗ trợ cung ứng nguồn lao động</h2>
-                    <span class="subheading">Nhanh chóng, tin cậy, hiệu quả</span>
+                    <h2>Tất cả các tin tuyển dụng</h2>
+                    <span class="subheading">Bạn có thể tìm cho mình một công việc tại đây</span>
                 </div>
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search for...">
@@ -63,46 +60,11 @@
                 <?php }
 
 				?>
-                <!-- Pager -->
-                <div class="clearfix">
-                    <a class="btn btn-primary float-right" href="allPosts.php">Tất cả tin tuyển dụng &rarr;</a>
-                </div>
         </div>
     </div>
 </div>
 <hr>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-10 col-md-12 mx-auto blue">
-            <h3 class="blue">Cẩm nang nghề nghiệp</h3>
-        </div>
-    </div>
-    <hr>
-    <div class="row">
-        <?php foreach ($news as $new) { ?>
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail">
-                <img src="<?= $new['post_cover'] ?>" alt="">
-                <div class="caption">
-                    <a href="news.php?news-id=<?= $new['id'] ?>">
-                        <h5><?= $new['title'] ?></h5>
-                    </a>
-                    <p></p>
-                </div>
-            </div>
-        </div>
-        <?php } ?>
-    </div>
-    <!-- row -->
-    <hr>
 
-    <div class="row">
-        <div class="col-lg-10 col-md-12 mx-auto">
-            <div class="alert alert-danger" role="alert">Người tìm việc cảnh giác với các hình thức lừa đảo <span class="red"> >> <a href="waring.php"> BẤM XEM NGAY!</a></span> </div>
-        </div>
-    </div>
-    <hr>
-</div>
 
 <?php
 	include_once('views/_footer.php');

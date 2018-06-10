@@ -3,6 +3,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-8 col-md-10 mx-auto">
+
 						<ul class="list-inline text-center">
 							<li class="list-inline-item">
 								<a href="#">
@@ -29,6 +30,45 @@
 								</a>
 							</li>
 						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-md-5 mx-auto">
+						<ul class="list-inline text-left">
+							<li>
+								Nhóm 2 
+							</li>
+							<li>
+								Môn Thương mại điện tử
+							</li>
+							<li>
+								<i class="fa fa-user-o blue" aria-hidden="true"></i> 
+								Hoàng Văn Tuấn
+							</li>
+							<li>
+								<i class="fa fa-user-o blue" aria-hidden="true"></i> 
+								Lô Minh Đức
+							</li>
+							<li>
+								<i class="fa fa-user-o blue" aria-hidden="true"></i> 
+								Trần Tuấn Ngọc
+							</li>
+							<li>
+								<i class="fa fa-user-o blue" aria-hidden="true"></i> 
+								Ngô Nguyễn Chí Công
+							</li>
+							<li>
+								<i class="fa fa-user-o blue" aria-hidden="true"></i> 
+								Nguyễn Huy Hợp
+							</li>
+						</ul>
+					</div>
+					<div class="col-lg-4 col-md-5 mx-auto">
+						
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-8 col-md-10 mx-auto">
 						<p class="copyright text-muted">Copyright &copy; Nhóm 2 - Thương mại điện tử -  2018</p>
 					</div>
 				</div>

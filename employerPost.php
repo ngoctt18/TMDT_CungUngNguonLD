@@ -3,7 +3,6 @@ session_start();
 
 include_once('config.php');
 include_once('app/func/employer.php');
-include_once('views/_header.php');
 include_once('app/func/post.php');
 
 if (!isset($_SESSION['usernameEmployer'])) {
@@ -28,8 +27,13 @@ if (isset($_POST['submit'])) {
   if (!empty($_POST['title']) && !empty($_POST['sub_title']) && !empty($_POST['body']) && !empty($_POST['description']) && !empty($_POST['experience']) && !empty($_POST['benefit']) && !empty($_POST['degreeRequest']) && !empty($_POST['ageRequest']) && !empty($_POST['genderRequest']) && !empty($_POST['salary']) && !empty($_POST['amount']) && !empty($_POST['jobType']) && !empty($_POST['location']) && !empty($_POST['fileRequest']) && !empty($_POST['another']) && !empty($_POST['deadline']) ) {
     # code...
     if (insertEmployerPost($_POST['title'], $_POST['sub_title'], $_POST['body'], $_POST['salary'], $_POST['experience'], $_POST['jobType'], $_POST['location'], $_POST['ageRequest'], $_POST['genderRequest'], $_POST['degreeRequest'], $_POST['amount'], $_POST['description'], $_POST['benefit'], $_POST['fileRequest'], $_POST['deadline'], $_POST['another'], $dataAcc['id']  )) {
-      // Đăng tin tuyển dụng thành công
-      
+
+        // Đăng tin tuyển dụng thành công chuyển về trang chủ
+        echo "<div class=\"container\"><div class=\"row\">
+            <div class=\"col-lg-10 col-md-12 mx-auto\"><br><br><div class=\"alert alert-success\" role=\"alert\">
+          <h2>Bài tuyển dụng của bạn đã được gửi thành công! <br> Click <a href=\"allPosts.php\" class=\"alert-link\">Bài đăng</a> để xem các bài đăng</h2>
+        </div></div></div></div>";
+        die;
       
 
       // Code giở
@@ -37,6 +41,7 @@ if (isset($_POST['submit'])) {
   }
 }
 
+include_once('views/_header.php');
 ?>
 <style>
 /* Credit to bootsnipp.com for the css for the color graph */
@@ -142,7 +147,7 @@ if (isset($_POST['submit'])) {
                     </div>
                     <div class="form-group">
                         <label for="location">Địa điểm làm việc</label>
-                        <input type="text" name="location" id="location" class="form-control input-lg" placeholder="Tiêu đề phụ"  required>
+                        <input type="text" name="location" id="location" class="form-control input-lg" placeholder="Địa điểm làm việc"  required>
                     </div>
                     <div class="form-group">
                         <label for="fileRequest">Hồ sơ bao gồm</label>

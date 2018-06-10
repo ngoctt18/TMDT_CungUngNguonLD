@@ -2,6 +2,7 @@
 session_start();
 include_once('app/init.php');
 include_once('views/_header.php');
+include_once('app/func/jobseeker.php');
 
 if (isset($_GET["post-id"])) {
   $id = $_GET["post-id"];
@@ -9,16 +10,42 @@ if (isset($_GET["post-id"])) {
 } else {
   header("location:index.php");
 }
+
+$checkOrder = false;
+
+if (isset($_SESSION['usernameJK'])) {
+    $usernameJK = $_SESSION['usernameJK'];
+    if (getInforByOrderID($usernameJK, $id)) {
+        $checkOrder = true;
+    }
+}
+
+
+
+if (isset($_POST['jobOrderSuccess'])) {
+
+    if (orderJobseeker($usernameJK, $id)){
+        $checkOrder = true;
+        // $_SESSION['checkOrder'.$id] = $id;
+        
+    } else {
+        $checkOrder = false;
+    }
+}
+
+
+
 ?>
 
-    <!-- Page Header -->
-    <?php
-      foreach ($post as $data) { 
-    ?>
+<!-- Page Header -->
+<?php
+  foreach ($post as $data) { 
+?>
 <style type="text/css">
   label.labelPosts {  font-size: 18px;}
   .blue {    color: #0047af;}
   .red{color: red !important;}
+  .visible {visibility: hidden !important;}
 </style>
 
 <header class="masthead" style="background-image: url('<?= empty($data['post_cover']) ? 'public/img/imgDefault.jpg' : $data['post_cover'] ?>')">
@@ -30,10 +57,17 @@ if (isset($_GET["post-id"])) {
                     <h1><?= $data['title'] ?></h1>
                     <h2 class="subheading"><?= $data['sub_title'] ?></h2>
                     <span class="meta">Posted by
-                <a href="#"><?= $data['namecompany'] ?></a>
-                on <?= $data['created_at'] ?></span>
-                <p><label class="labelPosts"><i class="fa fa-clock-o blue" aria-hidden="true"></i> Hạn nộp hồ sơ: <?= $data['deadline'] ?> </label></p>
+                    <a href="#"><?= $data['namecompany'] ?></a>
+                    on <?= $data['created_at'] ?></span>
+                    <p><label class="labelPosts"><i class="fa fa-clock-o blue" aria-hidden="true"></i> Hạn nộp hồ sơ: <?= $data['deadline'] ?> </label></p>
+                    <!-- order -->
+                    <button type="submit" class="btn btn-danger float-left <?= ($checkOrder) ? 'visible' : '' ?> " href="javascript:void(0)" name="jobOrder"  <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#jobOrder"' : 'data-toggle="modal" data-target="#jobOrderLogout"' ?>>Nộp hồ sơ &rarr;</button>
+                    
+                    <?= ($checkOrder) ? '<div class="alert alert-success" role="alert">Well done! Bạn đã nộp hồ sơ cho người tuyển dụng</div>' : '' ?>
+                    
                 </div>
+
+                
             </div>
         </div>
     </div>
@@ -210,6 +244,45 @@ if (isset($_GET["post-id"])) {
       }
     ?>
 <hr>
+<!-- Logout Modal-->
+<div class="modal fade" id="jobOrderLogout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Vui lòng đăng nhập</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Bạn phải đăng nhập để Nộp hồ sơ</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+        <a class="btn btn-primary" href="jobseekerLogin.php">Đăng nhập</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="jobOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xác nhận đăng ký việc làm</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Bạn chắc chắn muốn đăng ký công việc này?</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+        <form action="" method="post">
+            <button class="btn btn-primary" href="javascript:void(0)" name="jobOrderSuccess">Nộp hồ sơ</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 <?php
   include_once('views/_footer.php');

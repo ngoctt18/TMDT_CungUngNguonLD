@@ -71,4 +71,38 @@ function getInforJobseekerLogin($usernameJK){
   return $employerAcc;
 }
 
+
+// orderJobseeker
+function orderJobseeker($username, $post_id) {
+  global $conn;
+  $created_at = date("Y-m-d H:i:s");
+
+  $sql = "INSERT INTO `orders`(`username`, `post_id`, `created_at`, `status`) VALUES ('{$username}', '{$post_id}', '{$created_at}', 1)";
+
+  // echo $sql; die;
+
+  if(mysqli_query($conn, $sql)){
+        return true;
+    } else {
+      return false;
+        echo mysqli_error($conn);
+    }
+}
+
+//getInforByOrderID
+function getInforByOrderID($username, $post_id){
+  global $conn;
+
+  $sql = "SELECT * FROM `orders` WHERE username = '{$username}' AND post_id = '{$post_id}'";
+  // echo $sql;die;
+  
+  $result = mysqli_query($conn, $sql);
+  
+  if (mysqli_num_rows($result) > 0)
+    return true;
+  else
+    return false;
+}
+
+
  ?>

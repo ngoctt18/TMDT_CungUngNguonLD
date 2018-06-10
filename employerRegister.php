@@ -46,8 +46,12 @@ if (isset($_SESSION['usernameEmployer'])) {
                       if (isset($_SESSION['usernameJK'])) {
                         unset($_SESSION["usernameJK"]);
                       }
-                    echo "</br></br><center><h2>Bạn đã đăng ký thành công!</h2></center>";
-                    echo "<center><h3>Click <a href=\"employerPost.php\">Đăng tin</a></h3> để vào trang đăng tin tuyển dụng</center>";
+
+
+                    echo "<div class=\"container\"><div class=\"row\">
+                        <div class=\"col-lg-10 col-md-12 mx-auto\"><br><br><div class=\"alert alert-success\" role=\"alert\">
+                      <h2>Bạn đã đăng ký thành công! </h2><h3> Click <a href=\"employerPost.php\" class=\"alert-link\">Đăng tin</a> để vào trang đăng tin tuyển dụng</h3>
+                    </div></div></div></div>";
                     die;
 
 
@@ -116,8 +120,8 @@ if (isset($_SESSION['usernameEmployer'])) {
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Nhóm 2</h1>
-                        <span class="subheading">A Blog Theme by Ngoc TT</span>
+                        <h2>Đăng ký thông tin nhà tuyển dụng</h2>
+                        <span class="subheading">Giúp bạn tìm kiếm người lao động ưng ý nhất!</span>
                     </div>
                 </div>
             </div>

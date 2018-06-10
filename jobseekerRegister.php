@@ -1,11 +1,8 @@
 <?php 
 session_start();
-<<<<<<< HEAD
-
-=======
->>>>>>> 044e39f67daf68b265d25d8699147fa7901e428f
 include_once('config.php');
 include_once('app/func/jobseeker.php');
+
 
 
 $checkPassConfirm = false;
@@ -27,7 +24,11 @@ if (isset($_SESSION['usernameEmployer'])) {
   header('location: index.php');
   exit();
 } 
+?>
 
+<link rel="stylesheet" type="text/css" href="public/vendor/bootstrap/css/bootstrap.min.css">
+
+<?php
 if (isset($_POST['register'])) {
     if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['skill']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
         if ($_POST['password'] == $_POST['password_confirm']) {
@@ -47,14 +48,13 @@ if (isset($_POST['register'])) {
                 if (jobseekerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'], $_POST['email'], $_POST['address'], $_POST['skill'], $passwordJK )) {
 
                   // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
-                  
-
                   $_SESSION['usernameJK'] = $usernameJK;
 
-                  echo "<center><h2>Bạn đã đăng ký thành công!</h2></center>";
-                  echo "<center><h3>Click <a href=\"index.php\">Trang chủ</a></h3> để về trang chính</center>";
-                  die;
-
+                    echo "<div class=\"container\"><div class=\"row\">
+                        <div class=\"col-lg-10 col-md-12 mx-auto\"><br><br><div class=\"alert alert-success\" role=\"alert\">
+                      <h2>Bạn đã đăng ký thành công!</h2><h3> Click <a href=\"index.php\" class=\"alert-link\">Trang chủ</a> để về trang chính</h3>
+                    </div></div></div></div>";
+                    die;
                     
 
                 } else {
@@ -74,13 +74,8 @@ if (isset($_POST['register'])) {
     }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 044e39f67daf68b265d25d8699147fa7901e428f
 
 include_once('views/_header.php'); // Có session_start(); rồi
-
  ?>
 
 
@@ -123,8 +118,8 @@ include_once('views/_header.php'); // Có session_start(); rồi
             <div class="row">
                 <div class="col-lg-8 col-md-10 mx-auto">
                     <div class="site-heading">
-                        <h1>Nhóm 2</h1>
-                        <span class="subheading">A Blog Theme by Ngoc TT</span>
+                        <h2>Đăng ký thông tin cá nhân</h2>
+                        <span class="subheading">Giúp bạn tìm được công việc phù hợp nhất!</span>
                     </div>
                 </div>
             </div>
@@ -157,15 +152,7 @@ include_once('views/_header.php'); // Có session_start(); rồi
                         <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Họ tên" tabindex="3" required>
                     </div>
                     <div class="form-group">
-<<<<<<< HEAD
-                        <label for="email">Email</label>
-=======
-                        <label for="company_name">Tên công ty</label>
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4">
-                    </div>
-                    <div class="form-group">
                         <label for="email">Email (<span class="employerWaring">*</span>)</label>
->>>>>>> 044e39f67daf68b265d25d8699147fa7901e428f
                         <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
                     </div>
                     <div class="form-group">
@@ -173,7 +160,7 @@ include_once('views/_header.php'); // Có session_start(); rồi
                         <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
                     </div>
                     <div class="form-group">
-                        <label for="body">Kỹ năng</label>
+                        <label for="body">Kỹ năng (<span class="employerWaring">*</span>)</label>
                         <textarea class="form-control" id="skill" name="skill" rows="5" placeholder="Kỹ năng..."></textarea>
                     </div>
                     <div class="row">
