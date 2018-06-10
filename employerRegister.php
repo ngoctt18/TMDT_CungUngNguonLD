@@ -10,9 +10,9 @@ $checkPassConfirm = false;
 $checkUser = false;
 
 
-<<<<<<< HEAD
 if (isset($_SESSION['usernameEmployer'])) {
   header('location: employerPost.php');
+  exit();
 } else {
 
   if (isset($_POST['register'])) {
@@ -36,12 +36,14 @@ if (isset($_SESSION['usernameEmployer'])) {
                     $_SESSION['usernameEmployer'] = $usernameEmployer;
                     
                     header('location: employerPost.php');
+                      exit();
 
 
                   } else {
                     // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
                     session_destroy();
                     header('location: employerRegister.php');
+                      exit();
 
                   }
               }
@@ -53,44 +55,7 @@ if (isset($_SESSION['usernameEmployer'])) {
           }
       }
   }
-=======
 
-if (isset($_POST['register'])) {
-    if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['company_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
-        if ($_POST['password'] == $_POST['password_confirm']) {
-            // Khớp mật khẩu
-            $checkPassConfirm = false;
-            if (checkUsername($_POST['username'])) {
-                // Tài khoản đã tồn tại
-                $checkUser = true;
-
-            } else {
-                $checkUser = false;
-                //echo "Đăng nhập thành công!";
-                $usernameEmployer = trim($_POST['username']);
-                $passwordEmployer = md5(trim($_POST['password']));
-
-                if (employerRegister($usernameEmployer, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordEmployer )) {
-
-                  // Khởi tạo SESSION username và chuyển hướng người dùng vào trang employerPost
-                  $_SESSION['usernameEmployer'] = $usernameEmployer;
-                  
-                  header('location: employerPost.php');
-                } else {
-                  // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
-                  session_destroy();
-                  header('location: employerRegister.php');
-
-                }
-            }
-            
-        } else {
-            // echo "Mật khẩu nhập lại không khớp!";
-            $checkPassConfirm = true;
-
-        }
-    }
->>>>>>> 69bd88a61c2c0def3b3fdb03aa86f0acd3d97f4e
 }
 
 
@@ -147,7 +112,7 @@ if (isset($_POST['register'])) {
                 </div>
             </div>
         </div>
-<<<<<<< HEAD
+
     </header>
     <div class="container">
         <div class="row">
@@ -259,125 +224,7 @@ if (isset($_POST['register'])) {
         </div>
         <!-- /.modal -->
         <?php 
-=======
-      </div>
-    </div>
-  </div>
-</header>
-<div class="container">
 
-<div class="row">
-  <div class="col-xs-12 col-sm-8 col-md-8">
-		<form role="form" action="" method="post">
-			<h2>Nhà tuyển dụng Đăng ký</h2>
-			<hr class="colorgraph">
-			<div class="row">
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-            <label for="username">Tài khoản</label>
-            <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Tài khoản" tabindex="1" required>
-            <span class="employerWaring"><?= ($checkUser) ? ' Tài khoản đã tồn tại. Vui lòng thử lại' : ''; ?></span>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6">
-					<div class="form-group">
-            <label for="phone_num">Số điện thoại</label>
-						<input type="text" name="phone_num" id="phone_num" class="form-control input-lg" placeholder="Số điện thoại" tabindex="2" required>
-					</div>
-				</div>
-			</div>
-			<div class="form-group">
-                <label for="representative_name">Tên người đại diện</label>
-				<input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Tên người đại diện" tabindex="3" required>
-			</div>
-      <div class="form-group">
-          <label for="company_name">Tên công ty</label>
-          <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
-      </div>
-			<div class="form-group">
-                <label for="email">Email</label>
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
-			</div>
-      <div class="form-group">
-        <label for="address">Địa chỉ</label>
-        <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
-      </div>
-			<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-6">
-				<div class="form-group">
-          <label for="password">Mật khẩu</label>
-					<input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mật khẩu" tabindex="7" required>
-				</div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6">
-				<div class="form-group">
-          <label for="password_confirm">Nhập lại mật khẩu</label>
-					<input type="password" name="password_confirm" id="password_confirm" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="8" required>
-          <span class="employerWaring"><?= ($checkPassConfirm) ? ' Mật khẩu không khớp. Vui lòng thử lại' : ''; ?></span>
-				</div>
-			</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-4 col-sm-3 col-md-3">
-					<span class="button-checkbox">
-						<!-- <button type="button" class="btn" data-color="info" tabindex="9">  Xác nhận</button> -->
-            <!-- <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" required> -->
-					</span>
-				</div>
-				<div class="col-xs-8 col-sm-9 col-md-9">
-					 Khi click <strong class="label label-primary">Đăng ký</strong>, nghĩa là bạn đã đồng ý với <a href="#" data-toggle="modal" data-target="#t_and_c_m">Chính sách và điều khoản</a> của chúng tôi, bao gồm cả chính sách về cookie.
-				</div>
-			</div>
-			
-			<hr class="colorgraph">
-			<div class="row">
-				<div class="col-xs-12 col-md-6">
-          <button type="submit" class="btn btn-primary btn-block btn-lg" name="register">Đăng ký</button>
-        </div>
-			</div>
-		</form>
-
-        <br>
-	</div>
-  <div class="col-xs-12 col-sm-4 col-md-4">
-    <div class="row">
-      <div class="col-xs-12 col-md-12">
-        <h2>Bạn đã có tài khoản?</h2>
-      </div>
-      <div class="col-xs-12 col-md-12">
-        <a href="employerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-<!-- Modal -->
-  <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-			</div>
-			<div class="modal-body">
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-			</div>
-		</div><!-- /.modal-content -->
-  	</div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-  <?php 
->>>>>>> 69bd88a61c2c0def3b3fdb03aa86f0acd3d97f4e
   include_once('views/_footer.php');
  ?>
     </div>

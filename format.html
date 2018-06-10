@@ -1,232 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+HTML Cơ Bản CSS Cơ Bản JavaScript Cơ Bản PHP Cơ Bản SQL Cơ Bản Ruby Cơ Bản Node.js Cơ Bản Golang Cơ Bản Xem Thêm 
+ CodeHub.vn
+ Bài Viết
+ Câu Hỏi
+ Hướng Dẫn
+Đăng Nhập
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Nhà tuyển dụng Đăng ký </title>
-    <!-- Bootstrap core CSS -->
-    <!-- <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- Custom fonts for this template -->
-    <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-    /* Credit to bootsnipp.com for the css for the color graph */
+Tìm kiếm ...
+Trang Chủ   Bài Viết   [Fixed] Warning: Cannot modify header information - headers already sent by
+[Fixed] Warning: Cannot modify header information - headers already sent by
+ Trung Quân Trung Quân  21 November 2017
+Đây là một trong những lỗi rất phổ biến mà các lập trình viên PHP gặp phải trong khi code ứng dụng. Nôi dụng chi tiết của thông báo lỗi trên tương tự như sau:
 
-    .colorgraph {
-        height: 5px;
-        border-top: 0;
-        background: #c4e17f;
-        border-radius: 5px;
-        background-image: -webkit-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: -moz-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-        background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
-    }
+Warning: Cannot modify header information - headers already sent by (output started at /var/www/html/my_app/public_html/index.php:250)
+Nguyên Nhân Của Lỗi
+Ngyên nhân gây ra lỗi trên đó là do trong code chúng ta đã thực hiện việc gửi output trước đó rồi nhưng sau đó lại chỉnh sửa thông tin header. Thao tác gửi output có thể thông qua việc sử dụng các hàm hoặc câu lệnh như echo, print, var_dump(), print_r()... Thao tác chỉnh sửa thông tin header có thể được thực hiện thông qua việc sử dụng các hàm như header(), session_start(), setcookie(), header_remove()...
 
-    .employerWaring {
-        color: red;
-    }
-    </style>
-</head>
+Khắc Phục Lỗi - Warning: Cannot modify header information - headers already sent by
 
-<body>
-    <!-- Include the above in your HEAD tag -->
-    <!-- Page Header -->
-    <header class="masthead" style="background-image: url('public/img/post-sample-image.jpg')">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-md-10 mx-auto">
-                    <div class="site-heading">
-                        <h1>Nhóm 2</h1>
-                        <span class="subheading">A Blog Theme by Ngoc TT</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-8">
-                <form role="form" action="" method="post">
-                    <h2>Nhà tuyển dụng Đăng ký</h2>
-                    <hr class="colorgraph">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="username">Tài khoản</label>
-                                <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Tài khoản" tabindex="1" required>
-                                <span class="employerWaring"><?= ($checkUser) ? ' Tài khoản đã tồn tại. Vui lòng thử lại' : ''; ?></span>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="phone_num">Số điện thoại</label>
-                                <input type="text" name="phone_num" id="phone_num" class="form-control input-lg" placeholder="Số điện thoại" tabindex="2" required>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="representative_name">Tên người đại diện</label>
-                        <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Tên người đại diện" tabindex="3" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="company_name">Tên công ty</label>
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Địa chỉ</label>
-                        <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="password">Mật khẩu</label>
-                                <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mật khẩu" tabindex="7" required>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-6">
-                            <div class="form-group">
-                                <label for="password_confirm">Nhập lại mật khẩu</label>
-                                <input type="password" name="password_confirm" id="password_confirm" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="8" required>
-                                <span class="employerWaring"><?= ($checkPassConfirm) ? ' Mật khẩu không khớp. Vui lòng thử lại' : ''; ?></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4 col-sm-3 col-md-3">
-                            <span class="button-checkbox">
-            <!-- <button type="button" class="btn" data-color="info" tabindex="9">  Xác nhận</button> -->
-            <!-- <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" required> -->
-          </span>
-                        </div>
-                        <div class="col-xs-8 col-sm-9 col-md-9">
-                            Khi click <strong class="label label-primary">Đăng ký</strong>, nghĩa là bạn đã đồng ý với <a href="#" data-toggle="modal" data-target="#t_and_c_m">Chính sách và điều khoản</a> của chúng tôi, bao gồm cả chính sách về cookie.
-                        </div>
-                    </div>
-                    <hr class="colorgraph">
-                    <div class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <button type="submit" class="btn btn-primary btn-block btn-lg" name="register">Đăng ký</button>
-                        </div>
-                    </div>
-                </form>
-                <br>
-            </div>
-            <div class="col-xs-12 col-sm-4 col-md-4">
-                <div class="row">
-                    <div class="col-xs-12 col-md-12">
-                        <h2>Bạn đã có tài khoản?</h2>
-                    </div>
-                    <div class="col-xs-12 col-md-12">
-                        <a href="employerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                        <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-        <?php 
-  include_once('views/_footer.php');
- ?>
-    </div>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-    <script src="public/vendor/jquery/jquery.min.js"></script>
-    <!-- <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script> -->
-    <script>
-    $(function() {
-        $('.button-checkbox').each(function() {
+Ví dụ đoạn code như sau sẽ khiến sinh ra lỗi trên:
 
-            // Settings
-            var $widget = $(this),
-                $button = $widget.find('button'),
-                $checkbox = $widget.find('input:checkbox'),
-                color = $button.data('color'),
-                settings = {
-                    on: {
-                        icon: 'glyphicon glyphicon-check'
-                    },
-                    off: {
-                        icon: 'glyphicon glyphicon-unchecked'
-                    }
-                };
+File admin.php:
 
-            // Event Handlers
-            $button.on('click', function() {
-                $checkbox.prop('checked', !$checkbox.is(':checked'));
-                $checkbox.triggerHandler('change');
-                updateDisplay();
-            });
-            $checkbox.on('change', function() {
-                updateDisplay();
-            });
+<?php
+echo "Vui lòng login để tiếp tục!";
+header('Location: /login.php');
+?>
+Hoặc tương tự đoạn code sau cũng sinh ra lỗi:
 
-            // Actions
-            function updateDisplay() {
-                var isChecked = $checkbox.is(':checked');
+<html>
+<?php
+header('Location: /login.php');
+?>
+</html>
+Đặc biệt nếu bạn sử dụng session_start() thì chỉ những ký tự như khoảng trống hay dòng trống trước hoặc ngay sau thẻ mở <?php cũng đều gây ra lỗi:
 
-                // Set the button's state
-                $button.data('state', (isChecked) ? "on" : "off");
+  <?php
+session_start();
+Với đoạn code chúng ta cần lưu ý xoá khoảng trống trước thẻ mở <?php để không gây ra lỗi.
+Cách Khắc Phục Lỗi
+Cách khắc phục lỗi trên đó là kiểm tra lại các hàm tạo ra output được sử dụng trước câu lệnh chỉnh sửa header và xoá bỏ bỏ chúng đi. Ngoài ra, bạn cũng có thể sửa đổi luồng chạy của các câu lệnh này trong ứng dụng sao cho các câu lệnh tạo ra output và câu lệnh chỉnh sửa header không diễn ra trong cùng một luồng chạy.
 
-                // Set the button's icon
-                $button.find('.state-icon')
-                    .removeClass()
-                    .addClass('state-icon ' + settings[$button.data('state')].icon);
+Nếu như bạn sử dụng hàm session_start() thì cần đảm bảo hàm này được gọi ở ngay dòng đầu tiên của file PHP và không có bất kỳ ký tự nào dù là khoảng trống hay dòng trống vô tình được thêm vào phía trước đó.
 
-                // Update the button's color
-                if (isChecked) {
-                    $button
-                        .removeClass('btn-default')
-                        .addClass('btn-' + color + ' active');
-                } else {
-                    $button
-                        .removeClass('btn-' + color + ' active')
-                        .addClass('btn-default');
-                }
-            }
+Nếu bạn sử dụng hàm header() thì nên gọi exit(), die() ngay sau đó.
 
-            // Initialization
-            function init() {
+Trường hợp không tìm thấy hàm nào output ra kết quả được sử dụng trước đó thì bạn cần kiểm tra lại các file được nhập vào thông qua các hàm include() hoặc require() và kiểm tra lại xem các hàm này có output ra ký tự nào dù là khoảng trống hay hay dòng trống hay không.
 
-                updateDisplay();
+Kết Luận
+Mặc dù lỗi trên rất dễ gặp phải do chỉ cần bạn sơ ý output bất cứ một ký tự gì đó dù chỉ là một ký tự khoảng trống hay một dòng trống thì việc bạn chỉnh sửa thông tin header sau đó đều sẽ khiến sinh ra lỗi tuy nhiên như bạn thấy cũng không mất quá nhiều công sức để có thể khắc phục được nó. Việc gặp phải lỗi trong khi lập trình là khó có thể tránh khỏi ngay cả đối với những lập trình viên đã có nhiều năm kinh nghiệm, điều quan trong là trong quá trình code ứng dụng bạn lưu ý kiểm tra lại kỹ luồng chạy của ứng dụng khi sử dụng các hàm chỉnh sửa thông tin header.
 
-                // Inject the icon if applicable
-                if ($button.find('.state-icon').length == 0) {
-                    $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
-                }
-            }
-            init();
-        });
-    });
-    </script>
-</body>
+  
+ php  lập trình web  http
+Thêm Bình Luận:
+
+Đăng nhập để trả lời...
+ 
+Bài Viết Liên Quan
+Sử dụng PDO để kết nối với MySQL
+ Nguyễn Duy Tuấn Nguyễn Duy Tuấn  19 August 2015
+PHP 7 Có Gì Mới
+ Tran Khanh Tran Khanh  17 September 2015
+MySQLi hay PDO
+ Nguyễn Duy Tuấn Nguyễn Duy Tuấn  23 September 2015
+Xác Thực Người Dùng Trong Laravel
+ Minh Phạm Minh Phạm  07 October 2015
+Tìm Hiểu Về Laravel Generator
+ Hoàng Tùng Hoàng Tùng  09 October 2015
+ Banner Itviec
+Câu Hỏi Liên Quan
+Tìm tên Class của Object trong PHP
+Lỗi timeout khi cài đặt
+Không cài được Laravel bằng composer
+$$ là toán tử gì trong PHP?
+Trang trống sau khi gọi hàm mysql_connect
+Giới Thiệu Blog Liên Hệ Người Dùng Danh Sách Thẻ Phản Hồi Tuyển Dụng
+Thiết kế và phát triển bởi CodeHub.vn - Học Lập Trình Online Miễn Phí Team © 2017

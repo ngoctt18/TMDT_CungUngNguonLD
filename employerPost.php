@@ -7,6 +7,7 @@ include_once('app/func/post.php');
 
 if (!isset($_SESSION['usernameEmployer'])) {
   header('location: employerLogin.php');
+  exit();
 }
 
 $dataPosts = get_all_posts();

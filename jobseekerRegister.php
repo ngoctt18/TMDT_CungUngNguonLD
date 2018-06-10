@@ -1,9 +1,6 @@
 <?php 
-// session_start();
-
 include_once('views/_header.php'); // Có session_start(); rồi
 include_once('config.php');
-include_once('app/func/employer.php');
 include_once('app/func/jobseeker.php');
 
 
@@ -11,60 +8,68 @@ $checkPassConfirm = false;
 $checkUser = false;
 
 
-  
-
+// if (isset($_SESSION['usernameJK'])) {
+//   header('location: jobseekerSuccess.php');
+//   // exit();
+// }
 
 if (isset($_SESSION['usernameEmployer'])) {
   header('location: index.php');
-} else {
-  if (isset($_SESSION['usernameJK'])) {
-      header('location: index.php');
-    } else 
-    {
-    if (isset($_POST['register'])) {
-        if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
-            if ($_POST['password'] == $_POST['password_confirm']) {
-                // Khớp mật khẩu
-                $checkPassConfirm = false;
-                if (checkUsername($_POST['username'])) {
-                    // Tài khoản đã tồn tại
-                    $checkUser = true;
+  exit();
+} 
+ 
+
+if (isset($_POST['register'])) {
+    if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
+        if ($_POST['password'] == $_POST['password_confirm']) {
+            // Khớp mật khẩu
+            $checkPassConfirm = false;
+            if (checkUsername($_POST['username'])) {
+                // Tài khoản đã tồn tại
+                $checkUser = true;
+
+            } else {
+                $checkUser = false;
+                //echo "Đăng nhập thành công!";
+                $usernameJK = trim($_POST['username']);
+                $passwordJK = md5(trim($_POST['password']));
+
+                if (jobseekerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordJK )) {
+
+                  // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
+                  session_destroy();
+                  session_start();
+
+                  $_SESSION['usernameJK'] = $usernameJK;
+
+                  header('location: jobseekerSuccess.php');
+                  exit();
+
+                  if (isset($_SESSION['usernameJK'])) {
+                    header('location: index.php');
+                    exit();
+                  }
+                    
 
                 } else {
-                    $checkUser = false;
-                    //echo "Đăng nhập thành công!";
-                    $usernameJK = trim($_POST['username']);
-                    $passwordJK = md5(trim($_POST['password']));
+                  // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
+                  session_destroy();
+                  header('location: jobseekerRegister.php');
+                  exit();
 
-                    if (employerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordJK )) {
-
-                      // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
-                      // session_destroy();
-
-                      $_SESSION['usernameJK'] = $usernameJK;
-
-                      echo $_SESSION['usernameJK'];die;
-                      header('location: index.php');
-
-
-                    } else {
-                      // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
-                      session_destroy();
-                      // header('location: jobseekerRegister.php');
-
-                    }
                 }
-                
-            } else {
-                // echo "Mật khẩu nhập lại không khớp!";
-                $checkPassConfirm = true;
-
             }
+            
+        } else {
+            // echo "Mật khẩu nhập lại không khớp!";
+            $checkPassConfirm = true;
+
         }
     }
-  }
-
 }
+
+
+
 
 
 
@@ -189,7 +194,7 @@ if (isset($_SESSION['usernameEmployer'])) {
                         <h2>Bạn đã có tài khoản?</h2>
                     </div>
                     <div class="col-xs-12 col-md-12">
-                        <a href="employerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
+                        <a href="jobseekerLogin.php" class="btn btn-success btn-block btn-lg">Đăng nhập</a>
                     </div>
                 </div>
             </div>

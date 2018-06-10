@@ -7,6 +7,7 @@ include_once('app/func/employer.php');
 
 if (isset($_SESSION['usernameEmployer'])) {
   header('location: index.php');
+  exit();
 } else {
 
   if (isset($_POST['submit']) && !empty($_POST['usernameEmployer']) && !empty($_POST['password'])){
@@ -23,11 +24,13 @@ if (isset($_SESSION['usernameEmployer'])) {
       // var_dump($_SESSION['employerAcc']);die;
 
       header('location: employerPost.php');
+      exit();
       
     } else {
       // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang login
       session_destroy();
       header('location: employerLogin.php');
+      exit();
     }
   }
 }

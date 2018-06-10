@@ -55,11 +55,12 @@ if (isset($_SESSION['usernameJK'])) {
 							<a class="nav-link" href="contact.php">Liên hệ</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" <?= isset($usernameEmployer) ? 'data-toggle="modal" data-target="#employerLogout"' : '' ?> href="javascript:void(0)" style="font-family: tahoma;"> <?= isset($usernameEmployer) ? 'Logout, '.$_SESSION['usernameEmployer'] : '' ?>					
+							<a class="nav-link" <?= isset($usernameEmployer) ? 'data-toggle="modal" data-target="#employerLogout"' : '' ?> href="javascript:void(0)" style="font-family: tahoma;"> 
+								<?= isset($usernameEmployer) ? 'Logout, '.$usernameEmployer : '' ?>					
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#jobseekerLogout"' : '' ?> href="javascript:void(0)" style="font-family: tahoma;"> <?= isset($usernameJK) ? 'Out, '.$_SESSION['usernameJK'] : '' ?>					
+							<a class="nav-link" <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#jobseekerLogout"' : '' ?> href="javascript:void(0)" style="font-family: tahoma;"> <?= isset($usernameJK) ? 'Out, '.$usernameJK : '' ?>					
 							</a>
 						</li>
 					</ul>
@@ -77,7 +78,7 @@ if (isset($_SESSION['usernameJK'])) {
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên làm việc hiện tại của mình dưới tên tài khoản '<?= isset($_SESSION['usernameEmployer']) ? $_SESSION['usernameEmployer'] : ''; ?>'.</div>
+          <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên làm việc hiện tại của mình dưới tên tài khoản .</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
             <a class="btn btn-primary" href="employerLogout.php">Đăng xuất</a>
@@ -96,10 +97,10 @@ if (isset($_SESSION['usernameJK'])) {
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên làm việc hiện tại của mình dưới tên tài khoản '<?= isset($_SESSION['usernameJK']) ? $_SESSION['usernameJK'] : ''; ?>'.</div>
+          <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn đã sẵn sàng kết thúc phiên làm việc hiện tại của mình dưới tên tài khoản .</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-            <a class="btn btn-primary" href="employerLogout.php">Đăng xuất</a>
+            <a class="btn btn-primary" href="jobseekerLogout.php">Đăng xuất</a>
           </div>
         </div>
       </div>
@@ -115,7 +116,7 @@ if (isset($_SESSION['usernameJK'])) {
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Bạn phải đăng xuất khỏi tài khoản '<?= isset($_SESSION['usernameEmployer']) ? $_SESSION['usernameEmployer'] : ''; ?>' để thực hiện hành động này</div>
+          <div class="modal-body">Bạn phải đăng xuất khỏi tài khoản  để thực hiện hành động này</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
             <a class="btn btn-primary" href="employerLogout.php">Đăng xuất</a>

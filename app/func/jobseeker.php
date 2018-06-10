@@ -1,4 +1,20 @@
 <?php 
+
+// checkUsername
+function checkUsername($username){
+  global $conn;
+
+  $sql = "Select * From users Where username = '{$username}'";
+
+  $result = mysqli_query($conn, $sql);
+
+  if(mysqli_num_rows($result) > 0)
+    return true;
+  else 
+    return false;
+}
+
+
 // employerRegister
 function jobseekerRegister($username, $phone_num, $representative_name, $company_name, $email, $address, $password) {
 
@@ -18,6 +34,41 @@ function jobseekerRegister($username, $phone_num, $representative_name, $company
 }
 
 
+// checkLoginJobseeker
+function checkLoginJobseeker($usernameJK, $password){
+  
+  global $conn;
 
+  $sql = "SELECT * FROM users WHERE username = '{$usernameJK}' AND password = '{$password}' AND type_user = 3";
+  
+  
+  // echo $sql;die;
+  
+  $result = mysqli_query($conn, $sql);
+  
+  if (mysqli_num_rows($result) > 0)
+    return true;
+  else
+    return false;
+}
+
+
+// getInforJobseekerLogin
+function getInforJobseekerLogin($usernameJK){
+  global $conn;
+  $employerAcc = array();
+
+  $sql = "SELECT * FROM users WHERE username = '{$usernameJK}'";
+
+  $result = mysqli_query($conn, $sql);
+
+  if (mysqli_num_rows($result) > 0) {
+      // output data of each row
+      while($row = mysqli_fetch_assoc($result)) {
+          $employerAcc[] = $row;
+      }
+  }
+  return $employerAcc;
+}
 
  ?>
