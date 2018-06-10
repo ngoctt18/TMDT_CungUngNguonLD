@@ -49,6 +49,9 @@ if (isset($_SESSION['usernameEmployer'])) {
 			  background: #1c1c1c;
 			  color: #fff;
 			}
+			.input-group-btn{
+				float: right;
+			}
 
 		</style>
 	</head>

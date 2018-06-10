@@ -76,12 +76,30 @@ function get3News(){
 	return $news;	
 }
 
+function searchPost($key) {
+	global $conn;
+	$posts = array();
 
+<<<<<<< HEAD
 function getNewsByID($id){
 	global $conn;
 	$news = array();
 
 	$sql = "SELECT * FROM news INNER JOIN users WHERE news.auth_id = users.id AND news.status = 1 AND news.id = {$id}";
+=======
+	$sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.namecompany FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND posts.status = 1 AND title like '%".$key."%' ";
+
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) > 0) {
+	    while($row = mysqli_fetch_assoc($result)) {
+	        $posts[] = $row;
+	    }
+	}
+
+	return $posts;
+}
+>>>>>>> 75db15f45a3e54ca49ad74c187d456f2f4755a7f
 
 	$result = mysqli_query($conn, $sql);
 
