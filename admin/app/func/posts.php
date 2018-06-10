@@ -3,9 +3,11 @@ function getAllPosts(){
     global $conn;
     $posts = array();
 
-    $sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.fullname, posts.status FROM posts INNER JOIN users WHERE posts.auth_id = users.id ";
+    $sql = "SELECT posts.id, posts.title, posts.sub_title, users.representative, posts.status FROM posts INNER JOIN users WHERE posts.auth_id = users.id";
 
-    /*$sql = "SELECT * FROM posts";*/
+    // echo "<pre>";
+    // print_r($sql); 
+    // die;
     
     $result = mysqli_query($conn, $sql);
 
@@ -33,35 +35,52 @@ function getPostsByID($id){
 
 }
 
-function postsEdit($id, $title, $subtitle, $body, $status){
+function postsEdit($id, $title, $subtitle, $body, $salary, $experience, $JobType, $location, $AgeRequest, $GenderRequest, $DegreeRequest, $amount, $description, $benefit, $FileRequest, $deadline, $another, $status){
+
     global $conn;
 
-    $title = mysqli_real_escape_string($conn, $title);
-    $subtitle = mysqli_real_escape_string($conn, $subtitle);
-    $body = mysqli_real_escape_string($conn, $body);
-    $status = mysqli_real_escape_string($conn, $status);
+    /*$qr = "update posts set title = '".$title."', sub_title = '".$subtitle."', body = '".$body."', salary = '".$salary."', experience = '".$experience."', JobType = '".$JobType."', location = '".$location."', AgeRequest = '".$AgeRequest."', GenderRequest = '".$GenderRequest."', DegreeRequest = '".$DegreeRequest."', amount = '".$amount."', description = '".$description."', benefit = '".$benefit."', FileRequest = '".$FileRequest."', deadline = '".$deadline."', another = '".$another."', status = ".$status." where id =" .$id;*/
 
-    $sql = "Update posts Set title = '{$title}', sub_title = '{$subtitle}', body = '{$body}', status = '{$status}' Where id = '{$id}'";
-    //echo $sql; die;
-    if(mysqli_query($conn, $sql)){
-        return true;
-    } else {
-        return false;
-        echo mysqli_error($conn);
-    }
+    $qr = "UPDATE `posts` SET `title` = '".$title."', `sub_title` = '".$subtitle."', `body` = '".$body."', `salary` = '".$salary."', `experience` = '".$experience."', `JobType` = '".$JobType."', `location` = '".$location."', `AgeRequest` = '".$AgeRequest."', `GenderRequest` = '".$GenderRequest."', `DegreeRequest` = '".$DegreeRequest."', `amount` = '".$amount."', `description` = '".$description."', `benefit` = '".$benefit."', `FileRequest` = '".$FileRequest."', `deadline` = '".$deadline."', `another` = '".$another."', `status` = ".$status." WHERE `posts`.`id` = " . $id;
 
+    $rs = mysqli_query($conn, $qr);
+    return $rs;
+
+}
+function postCreate(){
+    global $conn;
+
+    $sql = "insert into users(namecompany, representative, email, username, password, phone, address, type_user, status) values('".$namecompany."', '".$representative."', '".$email."', '".$username."', '".$password."', ".$phone.", '".$address."', ".$type_user.", ".$status.")";
+
+    $rs = mysqli_query($conn, $sql);
+    return $rs;
 }
 
 function postsDelete($id){
     global $conn;
 
-    $sql = "Update Posts Set status = 2 Where id = {$id}";
-    if(mysqli_query($conn, $sql)){
-        return true;
-    } else {
-        return false;
-        echo mysqli_error($conn);
+    $query = "delete from posts where id = ". $id;
+
+    $rs = mysqli_query($conn, $query);
+
+    return $rs;
+}
+
+function PostSearch($key){
+    global $conn;
+    $posts = array();
+
+    $sql = "SELECT posts.id, posts.title, posts.sub_title, users.representative, posts.status FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND title like '%".$key."%' ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $posts[] = $row;
+        }
     }
+
+    return $posts;
 }
 
 

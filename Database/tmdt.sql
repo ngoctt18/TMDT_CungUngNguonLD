@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 10, 2018 lúc 02:04 PM
+-- Thời gian đã tạo: Th6 10, 2018 lúc 04:09 PM
 -- Phiên bản máy phục vụ: 10.1.32-MariaDB
 -- Phiên bản PHP: 5.6.36
 
@@ -93,7 +93,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `username`, `post_id`, `created_at`, `status`) VALUES
-(9, 'ntv', 12, '2018-06-10 07:02:51', 1);
+(9, 'ntv', 12, '2018-06-10 07:02:51', 1),
+(10, 'jobseeker', 12, '2018-06-10 08:13:52', 1),
+(11, 'jobseeker', 10, '2018-06-10 08:13:59', 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +136,8 @@ INSERT INTO `posts` (`id`, `title`, `sub_title`, `body`, `post_cover`, `salary`,
 (6, 'Tuyển Quản Lý Nhà Hàng', 'Tuyển Quản Lý  cho Nhà Hàng', 'Tuyển Nhân viên Quản Lý  cho Nhà Hàng Minh Đức', '', '7 - 10 triệu', 'Có kinh nghiệm làm quản lý nhà hàng.', ' Toàn thời gian cố định', ' Việc làm Hà Nội', '25 - 35 tuổi', 'Không yêu cầu', 'Không yêu cầu bằng cấp', '1', '- Đảm bảo chất lượng phục vụ khách hàng:\r\n- Điều khiển toàn bộ hoạt động phục vụ khách hàng trong nhà hàng.\r\n- Giám sát, nhắc nhở và hướng dẫn đội ngũ nhân viên thực hiện công việc.\r\n- Thường xuyên giao tiếp với khách hàng để nắm bắt thị hiếu, tâm lý và khẩu vị của khách. Với những đoàn khách quan trọng, quản lý nhà hàng phải ra chào đón khách, trực tiếp điều hành quá trình phục vụ và tiễn khách.\r\n- Trực tiếp giải quyết các khiếu nại, thắc mắc của khách hàng.\r\n- Nắm và hiểu rõ các ‘chương trình khuyến mãi” tại nhà hàng để giải thích cho khách hàng và truyền đạt cho nhân viên', '- Chế độ lương thưởng hấp dẫn, phù hợp năng lực. \r\n- Chế độ phúc lợi theo quy định của nhà nước.\r\n- Môi trường làm việc chuyên nghiệp.\r\n- Khả năng thăng tiến cao.', 'Ưu tiên nộp hồ sơ trực tuyến qua hệ thống Hoặc gửi CV mô tả quá trình học tập và làm việc về email liên hệ.', '30/06/2018', '- Nam, tuổi từ 20 - 45, sức khỏe tốt\r\n- Có khả năng làm việc luân phiên theo ca (có cả ca ngày và ca đêm)\r\n- Nhanh nhẹn, trung thực, có khả năng làm việc theo ca', '2018-06-10 09:55:17', '0000-00-00 00:00:00', 1, 2),
 (7, 'Tuyển Nhân Viên Bảo Vệ', 'Tuyển Nhân Viên Bảo Vệ tại Nhà hàng Nét Huế', 'Tuyển Nhân Viên Bảo Vệ tại Nhà hàng Nét Huế', '', '5 - 7 triệu', 'Chưa có kinh nghiệm', 'Theo hợp đồng tư vấn', 'Việc làm Hà Nội', '25 - 29 tuổi', 'Nam', 'Không yêu cầu bằng cấp', '20', 'Công việc: Trông, dắt và xếp xe ở nhà hàng, vệ sinh khu vực làm việc, bảo vệ tài sản của nhà hàng, hỗ trợ các công việc khác khi có sự điều động của quản lý cơ sở.\r\nCông việc cụ thể trao đổi khi phỏng vấn.', 'Tháng đầu thử việc hưởng lương 16k / h, sau thử việc hưởng lương 17k / h. Thu nhập giao động từ 5tr - 6tr', 'Ưu tiên nộp hồ sơ trực tuyến qua hệ thống Hoặc gửi CV mô tả quá trình học tập và làm việc về email liên hệ.', '30/12/2018', 'GIAO TIẾP TỐT, CÓ THÁI ĐỘ NIỀM NỞ, VUI VẺ + Có sức khỏe tốt, không tệ nạn xã hội, không tiền án tiền sự, trung thực, chăm chỉ, nhanh nhẹn và có trách nhiệm với công việc. Ưu tiên người có kinh nghiệm.', '2018-06-10 04:27:00', '0000-00-00 00:00:00', 1, 28),
 (10, 'Tuyển Nhân Viên phục Vụ Bàn', 'Tuyển Nhân Viên phục Vụ Bàn tại Hà Nội', 'Tuyển Nhân Viên phục Vụ Bàn theo ca tại Hà Nội', '', ' 5 - 7 triệu', 'Chưa có kinh nghiệm', 'Bán thời gian cố định', 'Việc làm Hà Nội', 'Không yêu cầu độ tuổi', 'Không yêu cầu', 'Không yêu cầu bằng cấp', '15', '- Chào đón khách và cung cấp thông tin về thực đơn.\r\n- Nhận order đồ ăn, đồ uống và thực hiện các thủ tục cần thiết.\r\n- Quan sát khách hàng để nắm bắt và thực hiện việc đáp ứng các yêu \r\ncầu của khách hàng kịp thời đảm bảo khách hàng được hài lòng\r\nLàm việc 17-23h. Phong cách làm việc văn minh - lịch sự - dân trí cao', 'Mức lương: 5 triệu + thưởng hàng tháng\r\n- Được đào tạo các nghiệp vụ quy trình phục vụ khách hàng.\r\n- Môi trường làm việc năng động, chuyên nghiệp.\r\n- Cơ hội thăng tiến cao\r\n- Trao đổi cụ thể trong quá trình phỏng vấn', 'Ưu tiên nộp hồ sơ trực tuyến qua hệ thống của Hoặc gọi điện trao đổi trực tiếp', '30/06/2018', '- Nhanh nhẹn, trung thực, năng động.\r\n- Khả năng giao tiếp, xử lý tình huống tốt.\r\n- Mong muốn gắn bó lâu dài', '2018-06-10 04:47:42', '0000-00-00 00:00:00', 1, 28),
-(12, 'Tuyển Thợ Hàn Có Đào Tạo', 'Tuyển gấp Thợ Hàn Có Đào Tạo', 'Tuyển gấp 4 Thợ Hàn Có Đào Tạo', '', ' 7 – 10 triệu', '2 năm', 'Toàn thời gian cố định', 'Việc làm Hà Nội', 'Không yêu cầu độ tuổi', 'Không yêu cầu', ' Không yêu cầu bằng cấp', '4', '- Hàn các sản phẩm biển quảng cáo\r\n- Được hướng dẫn khi nhận việc\r\n- Công việc cụ thể trao đổi trong quá trình phỏng vấn', '- Thu nhập cao theo năng lực\r\n- Hỗ trợ cơm trưa \r\n- Thưởng hiệu quả công việc hàng tháng\r\n- Ưu tiên người muốn gắn bó lâu dài với công việc.\r\n- Thưởng các ngày Lễ, Tết, sinh nhật…Du Xuân, nghỉ Mát hàng năm theo quy định.\r\n- Xét tăng lương 1-2 lần / năm', '-	SYLL. -	Giấy khám sức khỏe. -	CMND -	Bản sao giấy khai sinh. -	Sổ hộ khẩu. -	Giấy xác nhận nhân sự của chính quyền địa phương.', '15/07/2018', '- Nhanh nhẹn, hoạt bát và nhiệt tình trong công việc.\r\n- Có kinh nghiệm Hàn.\r\n- Ưu tiên người từng làm cho các công ty thi công biển bảng quảng cáo.', '2018-06-10 09:54:58', '0000-00-00 00:00:00', 1, 2);
+(12, 'Tuyển Thợ Hàn Có Đào Tạo', 'Tuyển gấp Thợ Hàn Có Đào Tạo', 'Tuyển gấp 4 Thợ Hàn Có Đào Tạo', '', ' 7 – 10 triệu', '2 năm', 'Toàn thời gian cố định', 'Việc làm Hà Nội', 'Không yêu cầu độ tuổi', 'Không yêu cầu', ' Không yêu cầu bằng cấp', '4', '- Hàn các sản phẩm biển quảng cáo\r\n- Được hướng dẫn khi nhận việc\r\n- Công việc cụ thể trao đổi trong quá trình phỏng vấn', '- Thu nhập cao theo năng lực\r\n- Hỗ trợ cơm trưa \r\n- Thưởng hiệu quả công việc hàng tháng\r\n- Ưu tiên người muốn gắn bó lâu dài với công việc.\r\n- Thưởng các ngày Lễ, Tết, sinh nhật…Du Xuân, nghỉ Mát hàng năm theo quy định.\r\n- Xét tăng lương 1-2 lần / năm', '-	SYLL. -	Giấy khám sức khỏe. -	CMND -	Bản sao giấy khai sinh. -	Sổ hộ khẩu. -	Giấy xác nhận nhân sự của chính quyền địa phương.', '15/07/2018', '- Nhanh nhẹn, hoạt bát và nhiệt tình trong công việc.\r\n- Có kinh nghiệm Hàn.\r\n- Ưu tiên người từng làm cho các công ty thi công biển bảng quảng cáo.', '2018-06-10 09:54:58', '0000-00-00 00:00:00', 1, 2),
+(14, 'Tuyển Thợ Sơn', 'Tuyển Thợ Sơn tại Công ty TNHH Kinh doanh Ô tô NISU', 'Công ty TNHH Kinh doanh Ô tô NISU Tuyển Thợ Sơn tại Hà Nội', '', '8 – 10 triệu', 'Dưới 1 năm', ' Toàn thời gian cố định', 'Việc làm Hà Nội', ' 25 - 29 tuổi', 'Nam', 'Trung học', '5', '- Sơn sửa các loại xe ô tô theo yêu cầu\r\n- Chủ yếu sơn gầm xe\r\n- Được đào tạo thêm về tay nghề\r\n- Sẽ trao đổi thêm khi phỏng vấn', '- Mức thu nhập : Thỏa thuận \r\n- Được hưởng tất cả các chế độ theo luật Lao động Nhà nước và chế độ theo quy định của Công ty\r\n- Được hưởng mức lương hấp dẫn xứng đáng với năng lực làm việc\r\n- Được hỗ trợ một bữa cơm trưa \r\n- Môi trường làm việc năng động, thân thiện và chuyên nghiệp, có cơ hội phát triển bản thân.', 'Ưu tiên nộp hồ sơ trực tuyến qua hệ thống Hoặc gửi CV mô tả quá trình học tập và làm việc về email liên hệ.', '30/08/2018', '- Có kinh nghiệm 01 năm trở lên về công việc sơn \r\n- Sức khỏe tốt.\r\n- Năng động sáng tạo, chủ động trong công việc.\r\n- Có tính kỷ luật cao.\r\n- Địa điểm làm việc: Long Biên', '2018-06-10 08:18:44', '0000-00-00 00:00:00', 1, 35);
 
 -- --------------------------------------------------------
 
@@ -166,7 +169,10 @@ INSERT INTO `users` (`id`, `namecompany`, `representative`, `email`, `username`,
 (1, 'Công ty TNHH Adminmistrator', 'Admin', 'trantuanngoctn97@gmail.com', 'admin', 'e10adc3949ba59abbe56e057f20f883e', 975853528, 'Văn Giang, Hưng Yên', 'Học hỏi, làm việc nhóm, lập trình...', 1, '2018-06-10 08:18:40', '0000-00-00 00:00:00', 1),
 (2, 'Công Ty TNHH Thương Mại Điện Tử', 'Ngoc Tran', 'sau8chin66@gmail.com', 'ngoctt', 'e10adc3949ba59abbe56e057f20f883e', 987654321, 'Bắc Từ Liêm, Hà Nội', 'Học hỏi, chăm chỉ, lập trình,...', 2, '2018-06-10 08:18:18', '0000-00-00 00:00:00', 1),
 (28, 'Công ty TNHH MTV DV TM Minh Đức', 'Lô Minh Đức', 'cudlont2@gmail.com', 'ntd', 'e10adc3949ba59abbe56e057f20f883e', 165825965, 'Như Thanh, Thanh Hóa', NULL, 2, '2018-06-10 04:14:46', '0000-00-00 00:00:00', 1),
-(29, NULL, 'Người Tìm Việc', 'ntv@gmail.com', 'ntv', 'e10adc3949ba59abbe56e057f20f883e', 2147483647, 'Hà Tây', 'Lập trình PHP, chăm chỉ, làm việc nhóm', 3, '2018-06-10 05:14:58', '0000-00-00 00:00:00', 1);
+(29, NULL, 'Người Tìm Việc', 'ntv@gmail.com', 'ntv', 'e10adc3949ba59abbe56e057f20f883e', 2147483647, 'Hà Tây', 'Lập trình PHP, chăm chỉ, làm việc nhóm', 3, '2018-06-10 05:14:58', '0000-00-00 00:00:00', 1),
+(34, NULL, 'Nguyễn Văn An', 'annv@gmail.com', 'jobseeker', 'e10adc3949ba59abbe56e057f20f883e', 123456789, '360 Hai Bà Trưng, Hà Nội', 'Chăm chỉ, cần cù, chịu khó', 3, '2018-06-10 08:13:36', '0000-00-00 00:00:00', 1),
+(35, 'ntd1', 'ntd1', 'trantuanngoctn97@gmail.com', 'ntd1', 'e10adc3949ba59abbe56e057f20f883e', 0, 'ntd1', NULL, 2, '2018-06-10 08:15:21', '0000-00-00 00:00:00', 1),
+(36, NULL, 'ntv3', 'jobseeker@gmail.com', 'ntv3', 'e10adc3949ba59abbe56e057f20f883e', 0, 'ntv3', 'ntv3', 3, '2018-06-10 08:35:23', '0000-00-00 00:00:00', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -210,7 +216,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT cho bảng `news`
@@ -222,19 +228,19 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -2,38 +2,6 @@
   include_once('app/init.php');
   include_once('views/_header.php');
 
-  /*if(isset($_GET['act']) && $_GET['act'] == 'edit') {
-    // Thực hiện edit ở đây
-    if(empty($_GET['user-id']) || $_GET['user-id'] == null){
-      header('location: users.php');
-    } else {
-      $id = $_GET['user-id'];
-      $user = getUserByID($id);      
-    }
-    if(isset($_POST['submit']) && !empty($_POST['namecompany']) && !empty($_POST['representative']) && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['phone']) && !empty($_POST['address']) && !empty($_POST['type_user']) && !empty($_POST['status'])){
-
-      $namecompany = trim($_POST['namecompany']);
-      $representative = trim($_POST['representative']);
-      $email = trim($_POST['email']);
-      $username = trim($_POST['username']);
-      $phone = trim($_POST['phone']);
-      $address = trim($_POST['address']);
-      $type_user = trim($_POST['type_user']);
-      $status = trim($_POST['status']);
-
-      //echo $status;die;
-
-      if(usersEdit($_GET['user-id'], $namecompany, $representative, $email, $username, $phone, $address, $type_user, $status)){
-        $check_update = true;
-      } else {
-        $check_update = false;
-      }
-      header('location: users.php');
-    }
-    // Chuyển đến file edit
-    include_once('views/_user_edit.php');
-
-  }*/ 
   if(isset($_GET['act']) && $_GET['act'] == 'edit') {
     // Thực hiện edit ở đây
     if(empty($_GET['user-id']) || $_GET['user-id'] == null){
@@ -63,7 +31,7 @@
 
             usersDelete($id);
         }
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php');
+        header('Location: users.php');
         exit();
 
   } elseif(isset($_GET['act']) && $_GET['act'] == 'add') {
@@ -74,14 +42,27 @@
       
       usersCreate($_POST['namecompany'], $_POST['representative'], $_POST['email'], $_POST['username'], $password, $_POST['phone'], $_POST['address'], $_POST['type_user'], $_POST['status']);
       
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php');
+        header('Location: users.php');
         exit();
     }
     // Chuyển đến file edit
     include_once('views/_user_create.php');
   } else {
     // Show posts index
-    $u = getAllUsers();
+    if(isset($_POST['btnSubmit'])) {
+        if (!empty($_POST['keyword'])){
+            $u = usersSearch($_POST['keyword']);
+            /*echo "<pre>";
+            print_r($posts);
+            die();*/
+        }else{
+            //echo "string";
+            //die();
+            $u = getAllUsers();
+        }
+    }else{
+        $u = getAllUsers();
+    }
     //var_dump($posts);die;
     include_once('views/_user_index.php');
   }

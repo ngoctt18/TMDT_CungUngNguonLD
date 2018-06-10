@@ -1,9 +1,5 @@
 <?php 
 session_start();
-<<<<<<< HEAD
-=======
-
->>>>>>> 75db15f45a3e54ca49ad74c187d456f2f4755a7f
 include_once('config.php');
 include_once('app/func/jobseeker.php');
 

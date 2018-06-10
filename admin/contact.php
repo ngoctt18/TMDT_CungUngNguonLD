@@ -28,7 +28,7 @@
 
             ContactDelete($id);
         }
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/contact.php');
+        header('Location: contact.php');
         exit();
 
   } elseif(isset($_GET['act']) && $_GET['act'] == 'add') {
@@ -37,14 +37,28 @@
       
       ContactCreate($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message'], $_POST['status']);
       
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/contact.php');
+        header('Location: contact.php');
         exit();
     }
     // Chuyển đến file edit
     include_once('views/_contact_create.php');
   } else {
     // Show posts index
-    $u = getAllContact();
+    if(isset($_POST['btnSubmit'])) {
+        if (!empty($_POST['keyword'])){
+            $u = ContactSearch($_POST['keyword']);
+            /*echo "<pre>";
+            print_r($posts);
+            die();*/
+        }else{
+            //echo "string";
+            //die();
+            $u = getAllContact();
+        }
+    }else{
+        $u = getAllContact();
+    }
+    
     //var_dump($posts);die;
     include_once('views/_contact_index.php');
   }

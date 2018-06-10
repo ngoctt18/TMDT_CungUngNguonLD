@@ -38,24 +38,6 @@ function getUserByID($id){
 function usersEdit($id, $namecompany, $representative, $email, $username, $phone, $address, $type_user, $status){
     global $conn;
 
-    /*$namecompany = mysqli_real_escape_string($conn, $namecompany);
-    $representative = mysqli_real_escape_string($conn, $representative);
-    $email = mysqli_real_escape_string($conn, $email);
-    $username = mysqli_real_escape_string($conn, $username);
-    $phone = mysqli_real_escape_string($conn, $phone);
-    $address = mysqli_real_escape_string($conn, $address);
-    $type_user = mysqli_real_escape_string($conn, $type_user);
-    $status = mysqli_real_escape_string($conn, $status);
-
-    $sql = "Update users Set namecompany = '{$namecompany}', representative = '{$representative}', email = '{$email}', username = '{$username}', phone = '{$phone}', address = '{$address}', type_user = '{$type_user}', status = '{$status}' Where id = '{$id}'";
-    //echo $sql; die;
-    if(mysqli_query($conn, $sql)){
-        return true;
-    } else {
-        return false;
-        echo mysqli_error($conn);
-    }*/
-
     $qr = "update users set namecompany = '".$namecompany."', representative = '".$representative."', email = '".$email."', username = '".$username."', phone = ".$phone.", address = '".$address."', type_user = ".$type_user.", status = ".$status." where id =" .$id;
 
     $rs = mysqli_query($conn, $qr);
@@ -105,6 +87,21 @@ function usersDelete($id){
 
     return $rs;
 }
+function usersSearch($key){
+    global $conn;
+    $posts = array();
 
+    $sql = "SELECT * FROM users WHERE namecompany like '%".$key."%' OR representative like '%".$key."%' OR username like '%".$key."%' ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $posts[] = $row;
+        }
+    }
+
+    return $posts;
+}
 
 ?>

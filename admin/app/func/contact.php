@@ -62,6 +62,21 @@ function ContactDelete($id){
 
     return $rs;
 }
+function ContactSearch($key){
+    global $conn;
+    $posts = array();
 
+    $sql = "SELECT * FROM contacts WHERE name like '%".$key."%' ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $posts[] = $row;
+        }
+    }
+
+    return $posts;
+}
 
 ?>

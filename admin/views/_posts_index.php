@@ -5,82 +5,62 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Edit Posts</li>
+        <li class="breadcrumb-item active">Edit User</li>
       </ol>
-
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <!-- <a href="posts.php?act=add">Thêm mới Post</a> -->
+          </div>
         <div class="card-body">
           <div class="table-responsive">
+
+          <form action="" method="post">
+              <input type="text" name="keyword" placeholder="Tìm kiếm..." />
+              <input type="submit" name="btnSubmit" value="Tìm">
+            </form>
+
+
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
                   <th>STT</th>
                   <th>ID</th>
-                  <th>Title</th>
-                  <th>Sub_title</th>
-                  <th>Sub_title</th>
+                  <th>Tiêu đề</th>
+                  <th>Tiêu đề con</th>
+                  <th>Trạng thái</th>
                   <th>Action</th>
                 </tr>
               </thead>
-             <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th>Title</th>
-                  <th>Author</th>
-                  <th>Status</th>
-                  <th>Action</th>
-                </tr>
-              </tfoot>
+
+              <?php foreach($p as $key => $item){ ?>
               <tbody>
-              <?php
-              $i=1;
-              foreach($p as $post){
-                $status = "";
-                if($post['status']==0)
-                  $status = "Draft";
-                elseif ($post['status']==1) 
-                  $status = "Active";
-                elseif ($post['status']==2) 
-                  $status = "Delete";
-                ?>
-                echo '<tr>';
-                echo    '<td>'.$i.'</td>';
-                echo    '<td>'.$post['title'].'</td>';
-                echo    '<td>'.$post['fullname'].'</td>';
-                echo    '<td>'.$status.'</td>';
-                echo    '<td>
-                            <a class="btn btn-success" href="posts.php?act=edit&post-id='.$post['id'].'" role="button">Edit</a> 
-                            <a class="btn btn-danger deleteButton" data-id="'.$post['id'].'" data-toggle="modal" href="" data-target="#deletePostModal" role="button">Delete</a> 
-                        </td>';
-                echo '</tr>';
-                $i++;
-              
-              <?php
-              }
-              ?>                
+                <tr>
+                  <td>
+                      <?php echo $key+1; ?>
+                  </td>
+                  <td>
+                      <?php echo $item['id']; ?>
+                  </td>
+                  <td>
+                      <?php echo $item['title']; ?>
+                  </td>
+                  <td>
+                      <?php echo $item['sub_title']; ?>
+                  </td>
+                  <td>
+                      <?php echo $item['status']; ?>
+                  </td>
+                  <td>
+                      <a href="posts.php?act=edit&post-id=<?php echo $item['id']; ?>">Sửa</a> |
+                      <a href="posts.php?act=delete&post-id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn chắc chắn xóa chứ');">Xóa</a>
+                  </td>
+              </tr>
               </tbody>
 
-               <!-- <?php foreach($p as $key => $post){ ?>
-               <tbody>
-                 <tr>
-                    <td><?php echo $key+1; ?></td>
-                    <td><?php echo $post['id']; ?></td>
-                   <td><?php echo $post['title']; ?></td>
-                   <td><?php echo $post['sub_title']; ?></td>
-                   <td><?php echo $post['status']; ?></td>
-                   <td>
-                      <a href="#">Sửa</a> | 
-                      <a href="#">Xóa</a>
-                   </td>
-                 </tr>
-               </tbody>
-               
-               <?php
+            <?php
                }
-               ?> -->
+               ?>
             </table>
           </div>
         </div>

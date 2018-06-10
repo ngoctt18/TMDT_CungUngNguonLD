@@ -12,6 +12,7 @@ if (isset($_GET["post-id"])) {
 }
 
 $checkOrder = false;
+$checkusernameEmployer = false;
 
 if (isset($_SESSION['usernameJK'])) {
     $usernameJK = $_SESSION['usernameJK'];
@@ -20,7 +21,9 @@ if (isset($_SESSION['usernameJK'])) {
     }
 }
 
-
+if (isset($_SESSION['usernameEmployer'])) {
+    $checkusernameEmployer = true;
+}
 
 if (isset($_POST['jobOrderSuccess'])) {
 
@@ -61,7 +64,7 @@ if (isset($_POST['jobOrderSuccess'])) {
                     on <?= $data['created_at'] ?></span>
                     <p><label class="labelPosts"><i class="fa fa-clock-o blue" aria-hidden="true"></i> Hạn nộp hồ sơ: <?= $data['deadline'] ?> </label></p>
                     <!-- order -->
-                    <button type="submit" class="btn btn-danger float-left <?= ($checkOrder) ? 'visible' : '' ?> " href="javascript:void(0)" name="jobOrder"  <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#jobOrder"' : 'data-toggle="modal" data-target="#jobOrderLogout"' ?>>Nộp hồ sơ &rarr;</button>
+                    <button type="submit" class="btn btn-danger float-left <?= ($checkOrder) ? 'visible' : '' ?> <?= ($checkusernameEmployer) ? 'visible' : '' ?> " href="javascript:void(0)" name="jobOrder"  <?= isset($usernameJK) ? 'data-toggle="modal" data-target="#jobOrder"' : 'data-toggle="modal" data-target="#jobOrderLogout"' ?>>Nộp hồ sơ &rarr;</button>
                     
                     <?= ($checkOrder) ? '<div class="alert alert-success" role="alert">Well done! Bạn đã nộp hồ sơ cho người tuyển dụng</div>' : '' ?>
                     
