@@ -1,16 +1,20 @@
 <?php 
-// session_start();
+session_start();
 
 include_once('config.php');
 include_once('app/func/employer.php');
 
-include_once('views/_header.php'); // Có session_start(); rồi
+include_once('views/_header.php'); 
 
 $checkPassConfirm = false;
 $checkUser = false;
 
 
+
 if (isset($_SESSION['usernameEmployer'])) {
+  if (isset($_SESSION['usernameJK'])) {
+    unset($_SESSION["usernameJK"]);
+  }
   header('location: employerPost.php');
   exit();
 } else {
@@ -34,9 +38,13 @@ if (isset($_SESSION['usernameEmployer'])) {
 
                     // Khởi tạo SESSION username và chuyển hướng người dùng vào trang employerPost
                     $_SESSION['usernameEmployer'] = $usernameEmployer;
-                    
-                    header('location: employerPost.php');
-                      exit();
+                    $_SESSION['employerAcc'] = getInforEmployerLogin($_SESSION['usernameEmployer']);
+                      if (isset($_SESSION['usernameJK'])) {
+                        unset($_SESSION["usernameJK"]);
+                      }
+                    echo "<center><h2>Bạn đã đăng ký thành công!</h2></center>";
+                    echo "<center><h3>Click <a href=\"employerPost.php\">Đăng tin</a></h3> để vào trang đăng tin tuyển dụng</center>";
+                    die;
 
 
                   } else {

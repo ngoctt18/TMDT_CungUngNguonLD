@@ -1,5 +1,5 @@
-
 <?php
+	session_start();
 	include_once('app/init.php');
 	include_once('views/_header.php');
 
