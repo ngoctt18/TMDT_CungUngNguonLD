@@ -1,6 +1,6 @@
 <?php
 session_start();
-  include_once('views/_header.php');
+include_once('views/_header.php');
 ?>
 
 <!-- Page Header -->

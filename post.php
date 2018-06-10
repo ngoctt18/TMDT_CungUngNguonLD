@@ -1,14 +1,14 @@
 <?php
 session_start();
-  include_once('app/init.php');
-  include_once('views/_header.php');
+include_once('app/init.php');
+include_once('views/_header.php');
 
-  if (isset($_GET["post-id"])) {
-    $id = $_GET["post-id"];
-    $post = get_post_by_id($id);
-  } else {
-    header("location:index.php");
-  }
+if (isset($_GET["post-id"])) {
+  $id = $_GET["post-id"];
+  $post = get_post_by_id($id);
+} else {
+  header("location:index.php");
+}
 ?>
 
     <!-- Page Header -->
