@@ -10,7 +10,7 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <a href="http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php?act=add">Thêm mới User</a>
+          <a href="users.php?act=add">Thêm mới User</a>
           </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -46,8 +46,8 @@
                    <td><?php echo $item['type_user']; ?></td>
                    <td><?php echo $item['status']; ?></td>
                    <td>
-                      <a href="http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php?act=edit&user-id=<?php echo $item['id']; ?>">Sửa</a> | 
-                      <a href="http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php?act=delete&user-id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn chắc chắn xóa chứ');">Xóa</a>
+                      <a href="users.php?act=edit&user-id=<?php echo $item['id']; ?>">Sửa</a> | 
+                      <a href="users.php?act=delete&user-id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn chắc chắn xóa chứ');">Xóa</a>
                    </td>
                  </tr>
                </tbody>

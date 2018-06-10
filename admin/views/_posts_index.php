@@ -34,53 +34,39 @@
                   <th>Action</th>
                 </tr>
               </tfoot>
-              <tbody>
-              <?php
-              $i=1;
-              foreach($p as $post){
-                $status = "";
-                if($post['status']==0)
-                  $status = "Draft";
-                elseif ($post['status']==1) 
-                  $status = "Active";
-                elseif ($post['status']==2) 
-                  $status = "Delete";
-                ?>
-                echo '<tr>';
-                echo    '<td>'.$i.'</td>';
-                echo    '<td>'.$post['title'].'</td>';
-                echo    '<td>'.$post['fullname'].'</td>';
-                echo    '<td>'.$status.'</td>';
-                echo    '<td>
-                            <a class="btn btn-success" href="posts.php?act=edit&post-id='.$post['id'].'" role="button">Edit</a> 
-                            <a class="btn btn-danger deleteButton" data-id="'.$post['id'].'" data-toggle="modal" href="" data-target="#deletePostModal" role="button">Delete</a> 
-                        </td>';
-                echo '</tr>';
-                $i++;
-              
-              <?php
-              }
-              ?>                
-              </tbody>
-
-               <!-- <?php foreach($p as $key => $post){ ?>
-               <tbody>
-                 <tr>
-                    <td><?php echo $key+1; ?></td>
-                    <td><?php echo $post['id']; ?></td>
-                   <td><?php echo $post['title']; ?></td>
-                   <td><?php echo $post['sub_title']; ?></td>
-                   <td><?php echo $post['status']; ?></td>
-                   <td>
-                      <a href="#">Sửa</a> | 
-                      <a href="#">Xóa</a>
-                   </td>
-                 </tr>
-               </tbody>
-               
-               <?php
-               }
-               ?> -->
+              <?php foreach($p as $key => $item){ ?>
+                      <tbody>
+                          <tr>
+                              <td>
+                                  <?php echo $key+1; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['title']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['name']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['email']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['phone']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['message']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['status']; ?>
+                              </td>
+                              <td>
+                                  <a href="contact.php?act=edit&cont-id=<?php echo $item['id']; ?>">Sửa</a> |
+                                  <a href="contact.php?act=delete&cont-id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn chắc chắn xóa chứ');">Xóa</a>
+                              </td>
+                          </tr>
+                      </tbody>
+                      <?php
+                     }
+                     ?>
             </table>
           </div>
         </div>

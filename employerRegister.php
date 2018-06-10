@@ -9,11 +9,11 @@ include_once('views/_header.php');
 $checkPassConfirm = false;
 $checkUser = false;
 
-if (isset($_SESSION['usernameJK'])) {
-    echo "</br></br><center><h2>Bạn phải đăng xuất để thực hiện thành động này!</h2></center>";
-    echo "<center><h3>Về <a href=\"index.php\">Trang chủ</a> hoặc <a href=\"jobseekerLogout.php\">Đăng xuất</a></center></h3>";
-    die;
-}
+// if (isset($_SESSION['usernameJK'])) {
+//     echo "</br></br><center><h2>Bạn phải đăng xuất để thực hiện thành động này!</h2></center>";
+//     echo "<center><h3>Về <a href=\"index.php\">Trang chủ</a> hoặc <a href=\"jobseekerLogout.php\">Đăng xuất</a></center></h3>";
+//     die;
+// }
 
 if (isset($_SESSION['usernameEmployer'])) {
   if (isset($_SESSION['usernameJK'])) {

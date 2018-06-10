@@ -63,7 +63,7 @@
 
             usersDelete($id);
         }
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php');
+        header('Location: users.php');
         exit();
 
   } elseif(isset($_GET['act']) && $_GET['act'] == 'add') {
@@ -74,7 +74,7 @@
       
       usersCreate($_POST['namecompany'], $_POST['representative'], $_POST['email'], $_POST['username'], $password, $_POST['phone'], $_POST['address'], $_POST['type_user'], $_POST['status']);
       
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/users.php');
+        header('Location: users.php');
         exit();
     }
     // Chuyển đến file edit

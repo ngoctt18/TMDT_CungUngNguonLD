@@ -28,7 +28,7 @@
 
             ContactDelete($id);
         }
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/contact.php');
+        header('Location: contact.php');
         exit();
 
   } elseif(isset($_GET['act']) && $_GET['act'] == 'add') {
@@ -37,7 +37,7 @@
       
       ContactCreate($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['message'], $_POST['status']);
       
-        header('Location: http://localhost:8080/TMDT_CungUngNguonLD/admin/contact.php');
+        header('Location: contact.php');
         exit();
     }
     // Chuyển đến file edit
