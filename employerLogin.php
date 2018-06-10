@@ -56,6 +56,7 @@ if (isset($_SESSION['usernameEmployer'])) {
     .card-login {
       max-width: 25rem; 
     }
+    .employerWaring {color: red;}
   </style>
 </head>
 
@@ -66,11 +67,11 @@ if (isset($_SESSION['usernameEmployer'])) {
       <div class="card-body">
         <form action="" method="post">
           <div class="form-group">
-            <label for="email">Tài khoản</label>
+            <label for="email">Tài khoản (<span class="employerWaring">*</span>)</label>
             <input class="form-control" id="email" type="text" name="usernameEmployer" placeholder="Tài khoản">
           </div>
           <div class="form-group">
-            <label for="password">Mật khẩu</label>
+            <label for="password">Mật khẩu (<span class="employerWaring">*</span>)</label>
             <input class="form-control" id="password" type="password" name="password" placeholder="Mật khẩu">
           </div>
           <div class="form-group">

@@ -27,7 +27,7 @@ function get_post_by_id($id) {
 	global $conn;
 	$post = array();
 
-	$sql = "SELECT posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.namecompany FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND posts.status = 1 AND posts.id = {$id}";
+	$sql = "SELECT * FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND posts.status = 1 AND posts.id = {$id}";
 
 	$result = mysqli_query($conn, $sql);
 
