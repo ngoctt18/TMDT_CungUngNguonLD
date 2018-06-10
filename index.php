@@ -2,9 +2,29 @@
 	session_start();
 	include_once('app/init.php');
 	include_once('views/_header.php');
+	//include_once('app/func/post.php');
 
-	$posts = get_all_posts();
-	//var_dump($posts);
+	/*$posts = searchPost(30);
+	echo "<pre>";
+	print_r($posts);
+	die();*/
+
+	if(isset($_POST['submit'])) {
+        if (!empty($_POST['keyword'])){
+            $posts = searchPost($_POST['keyword']);
+            /*echo "<pre>";
+			print_r($posts);
+			die();*/
+        }else{
+        	//echo "string";
+        	//die();
+            $posts = get_all_posts();
+        }
+	}else{
+		$posts = get_all_posts();
+	}
+	
+
 ?>
 
 		<!-- Page Header -->
@@ -16,13 +36,23 @@
 						<div class="site-heading">
 							<h1>Nhóm 2</h1>
 							<span class="subheading">A Blog Theme by Ngoc TT</span>
+							<br>
+
+			<form action="" method="post">
+				<div class="container">
+					<div class="input-group">
+						<!-- <input type="hidden" name="act" value="search" /> -->
+						<input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm..." value="<?php if (isset($_GET['keyword']) ? $_GET['keyword'] : ''); ?>" />
+
+					      <span class="input-group-btn">
+					        <button class="btn btn-search" name="submit" type="submit"><i class="fa fa-search fa-fw"></i> Search</button>
+					      </span>
+					</div>
+				</div>
+			</form>
+
 						</div>
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for...">
-						      <span class="input-group-btn">
-						        <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
-						      </span>
-						</div>
+						
 					</div>
 				</div>
 			</div>

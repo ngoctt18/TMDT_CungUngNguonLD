@@ -42,7 +42,22 @@ function get_post_by_id($id) {
 	
 }
 
+function searchPost($key) {
+	global $conn;
+	$posts = array();
 
+	$sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.namecompany FROM posts INNER JOIN users WHERE posts.auth_id = users.id AND posts.status = 1 AND title like '%".$key."%' ";
+
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) > 0) {
+	    while($row = mysqli_fetch_assoc($result)) {
+	        $posts[] = $row;
+	    }
+	}
+
+	return $posts;
+}
 
 
 

@@ -1,9 +1,6 @@
 <?php 
 session_start();
-<<<<<<< HEAD
 
-=======
->>>>>>> 044e39f67daf68b265d25d8699147fa7901e428f
 include_once('config.php');
 include_once('app/func/jobseeker.php');
 
@@ -74,10 +71,6 @@ if (isset($_POST['register'])) {
     }
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 044e39f67daf68b265d25d8699147fa7901e428f
 
 include_once('views/_header.php'); // Có session_start(); rồi
 
