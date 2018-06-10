@@ -1,10 +1,10 @@
 <?php
 session_start();
-  include_once('views/_header.php');
+include_once('views/_header.php');
 
 
-  // Khởi tạo các file cần thiết
-  $validation = array('public/js/jquery.validate.min.js', 'public/js/contact_me.js', 'public/js/jqBootstrapValidation.js');
+// Khởi tạo các file cần thiết
+$validation = array('public/js/jquery.validate.min.js', 'public/js/contact_me.js', 'public/js/jqBootstrapValidation.js');
 
 ?>
 
