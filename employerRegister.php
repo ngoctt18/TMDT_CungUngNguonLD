@@ -103,9 +103,7 @@ if (isset($_SESSION['usernameEmployer'])) {
         background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
     }
 
-    .employerWaring {
-        color: red;
-    }
+    .employerWaring {color: red;}
     </style>
 </head>
 
@@ -135,44 +133,44 @@ if (isset($_SESSION['usernameEmployer'])) {
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label for="username">Tài khoản</label>
+                                <label for="username">Tài khoản (<span class="employerWaring">*</span>)</label>
                                 <input type="text" name="username" id="username" class="form-control input-lg" placeholder="Tài khoản" tabindex="1" required>
                                 <span class="employerWaring"><?= ($checkUser) ? ' Tài khoản đã tồn tại. Vui lòng thử lại' : ''; ?></span>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label for="phone_num">Số điện thoại</label>
+                                <label for="phone_num">Số điện thoại (<span class="employerWaring">*</span>)</label>
                                 <input type="text" name="phone_num" id="phone_num" class="form-control input-lg" placeholder="Số điện thoại" tabindex="2" required>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="representative_name">Họ tên người đại diện</label>
+                        <label for="representative_name">Họ tên người đại diện (<span class="employerWaring">*</span>)</label>
                         <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Họ tên người đại diện" tabindex="3" required>
                     </div>
                     <div class="form-group">
-                        <label for="company_name">Tên công ty</label>
+                        <label for="company_name">Tên công ty (<span class="employerWaring">*</span>)</label>
                         <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4" required>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email">Email (<span class="employerWaring">*</span>)</label>
                         <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
                     </div>
                     <div class="form-group">
-                        <label for="address">Địa chỉ</label>
+                        <label for="address">Địa chỉ (<span class="employerWaring">*</span>)</label>
                         <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label for="password">Mật khẩu</label>
+                                <label for="password">Mật khẩu (<span class="employerWaring">*</span>)</label>
                                 <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Mật khẩu" tabindex="7" required>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-6 col-md-6">
                             <div class="form-group">
-                                <label for="password_confirm">Nhập lại mật khẩu</label>
+                                <label for="password_confirm">Nhập lại mật khẩu (<span class="employerWaring">*</span>)</label>
                                 <input type="password" name="password_confirm" id="password_confirm" class="form-control input-lg" placeholder="Nhập lại mật khẩu" tabindex="8" required>
                                 <span class="employerWaring"><?= ($checkPassConfirm) ? ' Mật khẩu không khớp. Vui lòng thử lại' : ''; ?></span>
                             </div>
@@ -180,13 +178,22 @@ if (isset($_SESSION['usernameEmployer'])) {
                     </div>
                     <div class="row">
                         <div class="col-xs-4 col-sm-3 col-md-3">
-                            <span class="button-checkbox">
-            <!-- <button type="button" class="btn" data-color="info" tabindex="9">  Xác nhận</button> -->
-            <!-- <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" required> -->
-          </span>
+                        <span class="button-checkbox">
+        <!-- <button type="button" class="btn" data-color="info" tabindex="9">  Xác nhận</button> -->
+        <!-- <input type="checkbox" name="t_and_c" id="t_and_c" class="hidden" value="1" required> -->
+                        </span>
                         </div>
                         <div class="col-xs-8 col-sm-9 col-md-9">
                             Khi click <strong class="label label-primary">Đăng ký</strong>, nghĩa là bạn đã đồng ý với <a href="#" data-toggle="modal" data-target="#t_and_c_m">Chính sách và điều khoản</a> của chúng tôi, bao gồm cả chính sách về cookie.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-3 col-md-3">
+                        <span class="button-checkbox">
+                        </span>
+                        </div>
+                        <div class="col-xs-8 col-sm-9 col-md-9">
+                            (<span class="employerWaring">*</span>)<i>Thông tin bắt buộc nhập</i>
                         </div>
                     </div>
                     <hr class="colorgraph">

@@ -105,8 +105,8 @@ if (isset($_POST['submit'])) {
                         <textarea class="form-control" id="benefit" name="benefit" rows="5" placeholder="Quyền lợi được hưởng"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="degreeRequest">Yêu cầu về trình độ</label>
-                        <input type="text" name="degreeRequest" id="degreeRequest" class="form-control input-lg" placeholder="Yêu cầu về trình độ"  required>
+                        <label for="degreeRequest">Yêu cầu bằng cấp</label>
+                        <input type="text" name="degreeRequest" id="degreeRequest" class="form-control input-lg" placeholder="Yêu cầu bằng cấp"  required>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
