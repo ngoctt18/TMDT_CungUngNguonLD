@@ -3,10 +3,17 @@ function getAllPosts(){
     global $conn;
     $posts = array();
 
+<<<<<<< HEAD
     $sql = "SELECT posts.id, posts.title, posts.sub_title, users.representative, posts.status FROM posts INNER JOIN users WHERE posts.auth_id = users.id";
 
     // echo "<pre>";
     // print_r($sql); 
+=======
+    $sql = "SELECT posts.id, posts.title, posts.sub_title, posts.body, posts.post_cover, posts.created_at, users.representative, posts.status FROM posts INNER JOIN users WHERE posts.auth_id = users.id";
+
+    // echo "<pre>";
+    // print_r($sql);
+>>>>>>> 324b477c916fca5d4c5a9e3667c8e3d42e1b7aa8
     // die;
     
     $result = mysqli_query($conn, $sql);

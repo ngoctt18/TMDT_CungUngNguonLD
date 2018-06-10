@@ -180,8 +180,7 @@ include_once('views/_header.php'); // Có session_start(); rồi
                     </div>
                     <div class="row">
                         <div class="col-xs-4 col-sm-3 col-md-3">
-                        <span class="button-checkbox">
-                        </span>
+                            <span></span>
                         </div>
                         <div class="col-xs-8 col-sm-9 col-md-9">
                             (<span class="employerWaring">*</span>)<i>Thông tin bắt buộc nhập</i>
@@ -234,10 +233,11 @@ include_once('views/_header.php'); // Có session_start(); rồi
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
-        <?php 
+    </div>
+ <hr>
+<?php 
   include_once('views/_footer.php');
  ?>
-    </div>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="public/vendor/jquery/jquery.min.js"></script>
     <!-- <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script> -->

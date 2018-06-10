@@ -10,6 +10,7 @@
       <!-- Example DataTables Card-->
       <div class="card mb-3">
           <div class="card-header">
+<<<<<<< HEAD
               <a href="contact.php?act=add">Thêm mới User</a>
           <div class="card-body">
               <div class="table-responsive">
@@ -19,6 +20,11 @@
                 <input type="submit" name="btnSubmit" value="Tìm">
               </form>
 
+=======
+              <i class="fa fa-table"></i> Data Table Example</div>
+          <div class="card-body">
+              <div class="table-responsive">
+>>>>>>> 324b477c916fca5d4c5a9e3667c8e3d42e1b7aa8
                   <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                           <tr>
