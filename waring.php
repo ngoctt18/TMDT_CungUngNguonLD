@@ -54,10 +54,6 @@ include_once('views/_header.php');
             </div>
         </div>
         <hr>
-
-        
-
-
     </div>
     <!-- container -->
 </article>

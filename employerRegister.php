@@ -246,11 +246,11 @@ if (isset($_SESSION['usernameEmployer'])) {
             <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
+    </div>
+ <hr>
         <?php 
-
   include_once('views/_footer.php');
  ?>
-    </div>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="public/vendor/jquery/jquery.min.js"></script>
     <!-- <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script> -->
