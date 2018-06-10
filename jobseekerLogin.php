@@ -8,7 +8,7 @@ if (isset($_SESSION['usernameJK'])) {
   header('location: index.php');
   exit();
 } else {
-
+  $message = "";
   if (isset($_POST['submit']) && !empty($_POST['usernameJK']) && !empty($_POST['password'])){
 
     $usernameJK = trim($_POST['usernameJK']);
@@ -27,9 +27,10 @@ if (isset($_SESSION['usernameJK'])) {
       
     } else {
       // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang login
-      session_destroy();
-      header('location: jobseekerLogin.php');
-      exit();
+      //session_destroy();
+      //header('location: jobseekerLogin.php');
+      //exit($message = 'Sai Username hoac Password';);
+      $message = 'Sai tài khoản hoặc mật khẩu';
     }
   }
 }
@@ -65,6 +66,7 @@ if (isset($_SESSION['usernameJK'])) {
       <div class="card-header">Người tìm việc đăng nhập</div>
       <div class="card-body">
         <form action="" method="post">
+        <p style="color: red;"><?php echo $message ?></p>
           <div class="form-group">
             <label for="email">Tài khoản</label>
             <input class="form-control" id="email" type="text" name="usernameJK" placeholder="Tài khoản">

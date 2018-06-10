@@ -1,5 +1,8 @@
 <?php 
+session_start();
+
 include_once('views/_header.php'); // Có session_start(); rồi
+
 include_once('config.php');
 include_once('app/func/jobseeker.php');
 
@@ -67,12 +70,6 @@ if (isset($_POST['register'])) {
         }
     }
 }
-
-
-
-
-
-
 
  ?>
 
