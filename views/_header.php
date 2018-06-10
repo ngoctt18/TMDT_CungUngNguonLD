@@ -33,6 +33,24 @@ if (isset($_SESSION['usernameEmployer'])) {
 		<link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 		<!-- Custom styles for this template -->
 		<link href="public/css/clean-blog.min.css" rel="stylesheet">
+		<style type="text/css">
+			.btn-search {
+			  background: #424242;
+			  border-radius: 0;
+			  color: #fff;
+			  border-width: 1px;
+			  border-style: solid;
+			  border-color: #1c1c1c;
+			}
+			.btn-search:link, .btn-search:visited {
+			  color: #fff;
+			}
+			.btn-search:active, .btn-search:hover {
+			  background: #1c1c1c;
+			  color: #fff;
+			}
+
+		</style>
 	</head>
 	<body>
 		<!-- Navigation -->

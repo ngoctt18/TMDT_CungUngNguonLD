@@ -1,5 +1,6 @@
 <?php 
 session_start();
+
 include_once('config.php');
 include_once('app/func/jobseeker.php');
 
@@ -23,10 +24,9 @@ if (isset($_SESSION['usernameEmployer'])) {
   header('location: index.php');
   exit();
 } 
- 
 
 if (isset($_POST['register'])) {
-    if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
+    if (!empty($_POST['username']) && !empty($_POST['phone_num']) && !empty($_POST['representative_name']) && !empty($_POST['email']) && !empty($_POST['address']) && !empty($_POST['skill']) && !empty($_POST['password']) && !empty($_POST['password_confirm'])) {
         if ($_POST['password'] == $_POST['password_confirm']) {
             // Khớp mật khẩu
             $checkPassConfirm = false;
@@ -40,7 +40,8 @@ if (isset($_POST['register'])) {
                 $usernameJK = trim($_POST['username']);
                 $passwordJK = md5(trim($_POST['password']));
 
-                if (jobseekerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'],  $_POST['company_name'], $_POST['email'], $_POST['address'], $passwordJK )) {
+                
+                if (jobseekerRegister($usernameJK, $_POST['phone_num'], $_POST['representative_name'], $_POST['email'], $_POST['address'], $_POST['skill'], $passwordJK )) {
 
                   // Khởi tạo SESSION username và chuyển hướng người dùng vào trang index
                   
@@ -55,9 +56,9 @@ if (isset($_POST['register'])) {
 
                 } else {
                   // Xóa toàn bộ SESSION và chuyển hướng người dùng vào trang register
-                  session_destroy();
-                  header('location: jobseekerRegister.php');
-                  exit();
+                session_destroy();
+                header('location: jobseekerRegister.php');
+                exit();
 
                 }
             }
@@ -69,9 +70,6 @@ if (isset($_POST['register'])) {
         }
     }
 }
-
-
-
 
 
 include_once('views/_header.php'); // Có session_start(); rồi
@@ -133,6 +131,7 @@ include_once('views/_header.php'); // Có session_start(); rồi
             <div class="col-xs-12 col-sm-8 col-md-8">
                 <form role="form" action="" method="post">
                     <h2>Người tìm việc Đăng ký</h2>
+
                     <hr class="colorgraph">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
@@ -154,16 +153,16 @@ include_once('views/_header.php'); // Có session_start(); rồi
                         <input type="text" name="representative_name" id="representative_name" class="form-control input-lg" placeholder="Họ tên" tabindex="3" required>
                     </div>
                     <div class="form-group">
-                        <label for="company_name">Tên công ty</label>
-                        <input type="text" name="company_name" id="company_name" class="form-control input-lg" placeholder="Tên công ty" tabindex="4">
-                    </div>
-                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email" tabindex="5" required>
                     </div>
                     <div class="form-group">
                         <label for="address">Địa chỉ</label>
                         <input type="text" name="address" id="address" class="form-control input-lg" placeholder="Địa chỉ" tabindex="6" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="body">Kỹ năng</label>
+                        <textarea class="form-control" id="skill" name="skill" rows="5" placeholder="Kỹ năng..."></textarea>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-6">
