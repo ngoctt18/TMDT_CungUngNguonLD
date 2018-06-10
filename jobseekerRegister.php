@@ -1,5 +1,11 @@
 <?php 
 session_start();
+<<<<<<< HEAD
+
+include_once('views/_header.php'); // Có session_start(); rồi
+
+=======
+>>>>>>> 3e0955d26305f2e0964026feae9ea8f18c1e36db
 include_once('config.php');
 include_once('app/func/jobseeker.php');
 
@@ -70,12 +76,15 @@ if (isset($_POST['register'])) {
     }
 }
 
+<<<<<<< HEAD
+=======
 
 
 
 
 include_once('views/_header.php'); // Có session_start(); rồi
 
+>>>>>>> 3e0955d26305f2e0964026feae9ea8f18c1e36db
  ?>
 
 
