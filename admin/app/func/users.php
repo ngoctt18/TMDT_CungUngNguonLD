@@ -40,6 +40,9 @@ function usersEdit($id, $namecompany, $representative, $email, $username, $phone
 
     $qr = "update users set namecompany = '".$namecompany."', representative = '".$representative."', email = '".$email."', username = '".$username."', phone = ".$phone.", address = '".$address."', type_user = ".$type_user.", status = ".$status." where id =" .$id;
 
+    /*echo $qr;
+    die();*/
+
     $rs = mysqli_query($conn, $qr);
     return $rs;
 

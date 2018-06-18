@@ -9,4 +9,5 @@
     include_once('func/posts.php');
     include_once('func/users.php');
     include_once('func/contact.php');
+    include_once('func/order.php');
 ?>

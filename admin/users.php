@@ -11,7 +11,7 @@
       $user = getUserByID($id);      // Lấy ra ở phần edit
     }
     if(isset($_POST['submit']) && !empty($_POST['namecompany']) && !empty($_POST['representative']) && !empty($_POST['email']) && !empty($_POST['username']) && !empty($_POST['phone']) && !empty($_POST['address']) && !empty($_POST['type_user']) && !empty($_POST['status'])){
-
+      
       usersEdit($_GET['user-id'], $_POST['namecompany'], $_POST['representative'], $_POST['email'], $_POST['username'], $_POST['phone'], $_POST['address'], $_POST['type_user'], $_POST['status']);
 
       header('location: users.php');

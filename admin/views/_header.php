@@ -56,6 +56,12 @@
             <span class="nav-link-text">User</span>
           </a>
         </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+          <a class="nav-link" href="order.php">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Order</span>
+          </a>
+        </li>
         
       </ul>
       <ul class="navbar-nav sidenav-toggler">

@@ -1,8 +1,6 @@
-<<<<<<< HEAD
-<!-- <link rel="stylesheet" type="text/css" href="public/vendor/bootstrap/css/bootstrap.min.css"> -->
-=======
+
 <link rel="stylesheet" type="text/css" href="public/vendor/bootstrap/css/bootstrap.min.css">
->>>>>>> 324b477c916fca5d4c5a9e3667c8e3d42e1b7aa8
+
 <?php
 session_start();
 

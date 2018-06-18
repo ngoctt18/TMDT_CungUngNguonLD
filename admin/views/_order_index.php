@@ -5,12 +5,12 @@
         <li class="breadcrumb-item">
           <a href="#">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Contact</li>
+        <li class="breadcrumb-item active">Order</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
           <div class="card-header">
-              <a href="contact.php?act=add">Thêm mới User</a>
+              <!-- <a href="order.php?act=add">Thêm mới Order</a> -->
           <div class="card-body">
               <div class="table-responsive">
 
@@ -26,10 +26,13 @@
                           <tr>
                               <th>STT</th>
                               <th>ID</th>
-                              <th>Tên</th>
+                              <th>Ussername</th>
+                              <th>Post_id</th>
+                              <th>Người đại diện</th>
                               <th>Email</th>
-                              <th>SĐT</th>
-                              <th>Nội dung</th>
+                              <th>Phone</th>
+                              <th>Address</th>
+                              <th>Ngày ĐK</th>
                               <th>Trạng thái</th>
                               <th>Action</th>
                           </tr>
@@ -38,15 +41,18 @@
                           <tr>
                               <th>STT</th>
                               <th>ID</th>
-                              <th>Tên</th>
+                              <th>Ussername</th>
+                              <th>Post_id</th>
+                              <th>Người đại diện</th>
                               <th>Email</th>
-                              <th>SĐT</th>
-                              <th>Nội dung</th>
+                              <th>Phone</th>
+                              <th>Address</th>
+                              <th>Ngày ĐK</th>
                               <th>Trạng thái</th>
                               <th>Action</th>
                           </tr>
                       </tfoot>
-                      <?php foreach($u as $key => $item){ ?>
+                      <?php foreach($o as $key => $item){ ?>
                       <tbody>
                           <tr>
                               <td>
@@ -56,7 +62,13 @@
                                   <?php echo $item['id']; ?>
                               </td>
                               <td>
-                                  <?php echo $item['name']; ?>
+                                  <?php echo $item['username']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['post_id']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['representative']; ?>
                               </td>
                               <td>
                                   <?php echo $item['email']; ?>
@@ -65,14 +77,17 @@
                                   <?php echo $item['phone']; ?>
                               </td>
                               <td>
-                                  <?php echo $item['message']; ?>
+                                  <?php echo $item['address']; ?>
+                              </td>
+                              <td>
+                                  <?php echo $item['created_at']; ?>
                               </td>
                               <td>
                                   <?php echo $item['status']; ?>
                               </td>
                               <td>
-                                  <a href="contact.php?act=edit&cont-id=<?php echo $item['id']; ?>">Sửa</a> |
-                                  <a href="contact.php?act=delete&cont-id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn chắc chắn xóa chứ');">Xóa</a>
+                                  <!-- <a href="order.php?act=edit&order-id=<?php echo $item['id']; ?>">Sửa</a> | -->
+                                  <a href="order.php?act=delete&order-id=<?php echo $item['id']; ?>" onclick="return confirm('Bạn chắc chắn xóa chứ');">Xóa</a>
                               </td>
                           </tr>
                       </tbody>

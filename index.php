@@ -40,7 +40,7 @@
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
                 <div class="site-heading">
-                    <h2>Website hỗ trợ cung ứng nguồn lao động</h2>
+                    <h2>Nhóm</h2>
                     <span class="subheading">Nhanh chóng, tin cậy, hiệu quả</span>
                     <br>
             <form action="" method="post">
